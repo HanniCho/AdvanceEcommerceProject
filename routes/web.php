@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 /*
@@ -46,6 +47,16 @@ Route::post('/update/change/password', [IndexController::class, 'UserUpdateChang
 // Admin Brands
 Route::prefix('brand')->group(function(){
 	Route::get('/all', [BrandController::class, 'DisplayBrands'])->name('all.brand');
+    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    Route::post('/update/{id}', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+
+});
+// Admin Brands
+Route::prefix('category')->group(function(){
+	Route::get('/all', [CategoryController::class, 'DisplayCategories'])->name('all.category');
+    
 });
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {

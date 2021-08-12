@@ -1,4 +1,7 @@
-
+@php
+  $prefix = Request::route()->getPrefix();
+  $route = Route::current()->getName();
+@endphp
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar-->
@@ -17,14 +20,14 @@
       
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">  		  
-		    <li>
-          <a href="#">
+		    <li class="{{($route == 'dashboard')? 'active':''}}">
+          <a href="{{url('admin/dashboard')}}">
           <i data-feather="pie-chart"></i>
 			    <span>Dashboard</span>
           </a>
         </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{($prefix == '/brand')? 'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
             <span>Brands</span>
@@ -33,10 +36,24 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('all.brand')}}"><i class="ti-more"></i>All Brands</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+            <li class="{{($route == 'all.brand')? 'active':''}}"><a href="{{route('all.brand')}}"><i class="ti-more"></i>All Brands</a></li>
           </ul>
-        </li> 
+        </li>
+        
+        <li class="treeview {{($prefix == '/category')? 'active':''}}">
+          <a href="#">
+            <i data-feather="message-circle"></i>
+            <span>Categories</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.category')? 'active':''}}"><a href="{{route('all.category')}}">
+              <i class="ti-more"></i>All Categories</a>
+            </li>
+          </ul>
+        </li>
 		  
         <li class="treeview">
           <a href="#">
