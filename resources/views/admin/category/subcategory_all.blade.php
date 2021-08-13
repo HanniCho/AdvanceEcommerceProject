@@ -8,7 +8,7 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                    <h3 class="box-title">Brand Lists</h3>
+                    <h3 class="box-title">SubCategory Lists</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -16,23 +16,22 @@
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                     <tr>
-                                        <td>Brand English</td>
-                                        <td>Brand Myanmar</td>
-                                        <td>Image</td>
+                                        <td>Category</td>
+                                        <td>SubCategory English</td>
+                                        <td>SubCategory Myanmar</td>
                                         <td>Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($brands as $brand)
+                                    @foreach($subcategories as $subcategory)
                                     <tr>
-                                        <td>{{$brand->brand_name_en}}</td>
-                                        <td>{{$brand->brand_name_mm}}</td>
-                                        <td>
-                                            <img src="{{ asset($brand->brand_image) }}" style="height:40px; width:70px;" alt="brand image">
-                                        </td>
+                                        <td>{{$subcategory['category']['category_name_en']}}</td>
+                                        <td>{{$subcategory->subcategory_name_en}}</td>
+                                        <td>{{$subcategory->subcategory_name_mm}}</td>
+                                        
                                         <td width="22%">
-                                            <a href="{{route('brand.edit',$brand->id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{route('brand.delete',$brand->id)}}" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a href="{{route('subcategory.edit',$subcategory->id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{route('subcategory.delete',$subcategory->id)}}" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -51,45 +50,49 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                    <h3 class="box-title">Add Brand</h3>
+                    <h3 class="box-title">Add SubCategory</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-                            <form method="post" action="{{route('brand.store')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{route('subcategory.store')}}">
                                 @csrf
                                 <div class="form-group">
-                                    <h5>Brand Name English <span class="text-danger">*</span></h5>
+                                    <h5>Category<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text"  name="brand_name_en" class="form-control">
-                                        @error('brand_name_en')
+                                        <select name="category_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select Category</option>
+                                            @foreach($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->category_name_en}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Sub Category Name English <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="text"  name="subcategory_name_en" class="form-control">
+                                        @error('subcategory_name_en')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>  
                                 
                                 <div class="form-group">
-                                <h5>Brand Name Myanmar <span class="text-danger">*</span></h5>
+                                    <h5>Sub Category Name Myanmar <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text"  name="brand_name_mm" class="form-control">
-                                        @error('brand_name_mm')
+                                        <input type="text"  name="subcategory_name_mm" class="form-control">
+                                        @error('subcategory_name_mm')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
-                                </div>                    
-                        
-                                <div class="form-group">
-                                    <h5>Brand Image <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="file" name="brand_image" class="form-control">
-                                        @error('brand_image')
-                                            <span class="text-danger">{{$message}}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                </div> 
                                 
                                 <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New Brand">
+                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New Sub Category">
                                 </div>
                             </form>
                         </div>              
