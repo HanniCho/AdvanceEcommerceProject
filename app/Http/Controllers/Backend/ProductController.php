@@ -184,8 +184,56 @@ class ProductController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-    public function ProductDelete()
+    public function MultiImageDelete($id)
     {
-        # code...
+        $old_image = MultiImg::findOrFail($id);
+        unlink($old_image->photo_name);
+        MultiImg::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Image Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+    public function ProductInactive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+        $notification = array(
+			'message' => 'Product Inactive',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->back()->with($notification);
+    }
+    public function ProductActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+        $notification = array(
+			'message' => 'Product Inactive',
+			'alert-type' => 'success'
+		);
+    }
+    public function ProductDelete($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+
+        $multiImgs = MultiImg::where('product_id',$id)->get();
+        foreach ($multiImgs as $img) {
+            unlink($img->photo_name);
+            MultiImg::where('product_id',$id)->delete();
+        }       
+
+        //For toastr message
+        $notification = array(
+            'message' => 'Product Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
     }
 }

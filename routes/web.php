@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 /*
@@ -93,16 +94,16 @@ Route::prefix('product')->group(function(){
     Route::post('/update', [ProductController::class, 'ProductUpdate'])->name('product.update');
     Route::post('/update/image', [ProductController::class, 'MultiImageUpdate'])->name('product.update.image');
     Route::post('/update/thumbnail', [ProductController::class, 'ThumbnailImageUpdate'])->name('product.update.thumbnail');
+    Route::get('/multiimg/delete/{id}', [ProductController::class, 'MultiImageDelete'])->name('product.multiimg.delete');
+
+    Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
+    Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
 
     Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
 });
 // Admin Sliders
 Route::prefix('slider')->group(function(){
-    Route::get('/manage', [ProductController::class, 'ManageSlider'])->name('manage.slider'); 
-
-    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
-    Route::post('/update/{id}', [BrandController::class, 'BrandUpdate'])->name('brand.update');
-    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+    Route::get('/manage', [SliderController::class, 'ManageSlider'])->name('manage.slider'); 
 
 });
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {

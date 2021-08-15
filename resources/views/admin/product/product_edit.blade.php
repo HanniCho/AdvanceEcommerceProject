@@ -223,7 +223,7 @@
                                         </div> <!-- end col md 4 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>Piscount Price <span class="text-danger">*</span></h5>
+                                                <h5>Discount Price <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="discount_price" value="{{$product->discount_price}}" class="form-control"> 
                                                 </div>
@@ -401,7 +401,7 @@
                                         <img src="{{ asset($img->photo_name) }}" class="card-img-top" style="height: 130px; width: 280px;">
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i> </a>
+                                                <a href="{{ route('product.multiimg.delete',$img->id)}}" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i> </a>
                                             </h5>
                                             <p class="card-text"> 
                                                 <div class="form-group">

@@ -218,7 +218,7 @@
                                         </div> <!-- end col md 4 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>Piscount Price <span class="text-danger">*</span></h5>
+                                                <h5>Discount Price <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="discount_price" class="form-control"> 
                                                 </div>
