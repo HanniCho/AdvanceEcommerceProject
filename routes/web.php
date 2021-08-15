@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 /*
@@ -75,6 +76,7 @@ Route::prefix('category')->group(function(){
 Route::prefix('category')->group(function(){
 	Route::get('/sub/sub/all', [SubCategoryController::class, 'DisplaySubSubCategories'])->name('all.subsubcategory'); 
 	Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'GetSubCategory']); 
+    Route::get('/sub-subcategory/ajax/{subcategory_id}', [SubCategoryController::class, 'GetSubSubCategory']);
 
     Route::post('/sub/sub/store', [SubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
     Route::get('/sub/sub/edit/{id}', [SubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
@@ -82,6 +84,27 @@ Route::prefix('category')->group(function(){
     Route::get('/sub/sub/delete/{id}', [SubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });
 
+// Admin Products
+Route::prefix('product')->group(function(){
+	Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store', [ProductController::class, 'ProductStore'])->name('product.store'); 
+    Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage.product'); 
+    Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+    Route::post('/update', [ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::post('/update/image', [ProductController::class, 'MultiImageUpdate'])->name('product.update.image');
+    Route::post('/update/thumbnail', [ProductController::class, 'ThumbnailImageUpdate'])->name('product.update.thumbnail');
+
+    Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+});
+// Admin Sliders
+Route::prefix('slider')->group(function(){
+    Route::get('/manage', [ProductController::class, 'ManageSlider'])->name('manage.slider'); 
+
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    Route::post('/update/{id}', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+
+});
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
