@@ -216,7 +216,9 @@ class ProductController extends Controller
 			'message' => 'Product Inactive',
 			'alert-type' => 'success'
 		);
+        return redirect()->back()->with($notification);
     }
+    
     public function ProductDelete($id)
     {
         $product = Product::findOrFail($id);

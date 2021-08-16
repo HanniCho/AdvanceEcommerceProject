@@ -20,7 +20,7 @@ class BrandController extends Controller
         $request->validate([
             'brand_name_en' => 'required',
             'brand_name_mm'=> 'required',
-            'brand_image'=> 'required|mimes:jpg.jpeg,png',
+            'brand_image'=> 'required|mimes:jpg,jpeg,png',
         ],[
             'brand_name_en.required' => 'Please input Brand Name in English',
             'brand_name_mm.required'=> 'Please input Brand Name in Myanmar',

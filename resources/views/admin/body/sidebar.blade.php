@@ -88,7 +88,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{($route == 'manage.slider')? 'active':''}}"><a href="{{route('manage.slider')}}">
+            <li class="{{($route == 'all.slider')? 'active':''}}"><a href="{{route('all.slider')}}">
               <i class="ti-more"></i>Manage Slider</a>
             </li>
           </ul>
