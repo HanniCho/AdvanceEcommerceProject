@@ -5,7 +5,7 @@
             <div class="item">
               <div class="products">
                 <div class="hot-deal-wrapper">
-                  <div class="image"> <img src="{{asset($product->product_thumbnail)}}" alt=""> </div>
+                  <div class="image"><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> <img src="{{asset($product->product_thumbnail)}}" alt=""> </a></div>
                   
                   @php
                   $discount = (($product->selling_price - $product->discount_price)/$product->selling_price)*100;
