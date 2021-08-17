@@ -136,3 +136,6 @@ Route::get('/currency/kyat', [CurrencyController::class, 'KYAT'])->name('kyat.cu
 
 //Product Detail Routes
 Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+//Product Tags Routes
+Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProduct']);

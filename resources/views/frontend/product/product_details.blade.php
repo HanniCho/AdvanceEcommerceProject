@@ -911,7 +911,7 @@ Buy {{$product->product_name_en}}
 	</div><!-- /.row -->
 
 	<!-- ==== ================== BRANDS CAROUSEL ============================================== -->
-	@include('frontend.body.brands');
+	@include('frontend.body.brands')
 	<!-- == = BRANDS CAROUSEL : END = -->	
 </div><!-- /.container -->
 @endsection
