@@ -113,8 +113,9 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug)
     {
         $product = Product::findOrFail($id);
+        $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
         $multiImgs = MultiImg::where('product_id',$id)->get();
-        return view('frontend.product.product_details',compact('product','multiImgs'));
+        return view('frontend.product.product_details',compact('product','hot_deals','multiImgs'));
     }
     public function TagWiseProduct($tag)
     {
