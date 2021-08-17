@@ -116,21 +116,7 @@ Honey Online Shop - Home
         <!-- /.sidebar-widget --> 
         <!-- ============================================== SPECIAL DEALS : END ============================================== --> 
         <!-- ============================================== NEWSLETTER ============================================== -->
-        <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
-          <h3 class="section-title">Newsletters</h3>
-          <div class="sidebar-widget-body outer-top-xs">
-            <p>Sign Up for Our Newsletter!</p>
-            <form>
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
-              </div>
-              <button class="btn btn-primary">Subscribe</button>
-            </form>
-          </div>
-          <!-- /.sidebar-widget-body --> 
-        </div>
-        <!-- /.sidebar-widget --> 
+        @include('frontend.include.newsletter')
         <!-- ============================================== NEWSLETTER: END ============================================== --> 
         
         <!-- ============================================== Testimonials============================================== -->
@@ -464,6 +450,8 @@ Honey Online Shop - Home
         </section>
         <!-- /.section --> 
         <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
+        
+        <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <!-- ============================================== SKIP_PRODUCT_0  ============================================== -->
         <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'myanmar') {{$skip_category_0->category_name_mm}} @else {{$skip_category_0->category_name_en}} @endif</h3>
@@ -601,9 +589,8 @@ Honey Online Shop - Home
         <!-- /.section --> 
         <!-- ============================================== SKIP_PRODUCT_1 : END ============================================== --> 
        
-        <!-- ============================================== WIDE PRODUCTS ============================================== -->
-         <!-- ============================================== SKIP_BRAND_6  ============================================== -->
-         <section class="section featured-product wow fadeInUp">
+        <!-- ============================================== SKIP_BRAND_6  ============================================== -->
+        <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'myanmar') {{$skip_brand_6->brand_name_mm}} @else {{$skip_brand_6->brand_name_en}} @endif</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
             @foreach($skip_brand_product_6 as $product)
@@ -669,7 +656,7 @@ Honey Online Shop - Home
           <!-- /.home-owl-carousel --> 
         </section>
         <!-- /.section --> 
-        
+        <!-- ============================================== SKIP_BRAND_6 : END ============================================== --> 
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <div class="wide-banners wow fadeInUp outer-bottom-xs">
           <div class="row">
@@ -695,7 +682,6 @@ Honey Online Shop - Home
           <!-- /.row --> 
         </div>
         <!-- /.wide-banners --> 
-        <!-- ============================================== SKIP_BRAND_6 : END ============================================== --> 
         
         <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
         <!-- ============================================== BEST SELLER ============================================== -->
