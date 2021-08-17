@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CurrencyController;
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -42,15 +44,6 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangedPassword'])->name('update.change.password');
 
 });
-
-//User Routes
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
-Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
-Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
-Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
-Route::post('/update/change/password', [IndexController::class, 'UserUpdateChangedPassword'])->name('update.change.password');
-
 // Admin Brands
 Route::prefix('brand')->group(function(){
 	Route::get('/all', [BrandController::class, 'DisplayBrands'])->name('all.brand');
@@ -118,9 +111,28 @@ Route::prefix('slider')->group(function(){
 
 });
 
-
+//Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
     $user = User::find($id);
     return view('dashboard',compact('user'));
 })->name('dashboard');
+
+//User Routes
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
+Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
+Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
+Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
+Route::post('/update/change/password', [IndexController::class, 'UserUpdateChangedPassword'])->name('update.change.password');
+
+//Multi Language Routes
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/myanmar', [LanguageController::class, 'Myanmar'])->name('myanmar.language');
+
+//Multi Language Routes
+Route::get('/currency/usd', [CurrencyController::class, 'USD'])->name('usd.currency');
+Route::get('/currency/kyat', [CurrencyController::class, 'KYAT'])->name('kyat.currency');
+
+//Product Detail Routes
+Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);

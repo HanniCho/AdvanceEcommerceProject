@@ -137,7 +137,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_en" value="Lorem,Ipsum,Amet" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_en" value="Slim Fit" data-role="tagsinput" class="form-control"> 
                                                 </div>
                                                 @error('product_tags_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -148,7 +148,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_mm" value="Lorem,Ipsum,Amet" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_mm" value="Slim Fit" data-role="tagsinput" class="form-control"> 
                                                 </div>
                                                 @error('product_tags_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -261,7 +261,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_en" id="textarea" class="form-control" placeholder="Textarea text"></textarea>
+                                                    <textarea name="short_descp_en" id="textarea" class="form-control" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "></textarea>
                                                 </div>
                                                 @error('short_descp_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -272,7 +272,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" placeholder="Textarea text"></textarea>
+                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" placeholder="Lorem Ipsum သည်ပုံနှိပ်ခြင်းနှင့်စာရိုက်ခြင်းလုပ်ငန်း၏စာလုံးများဖြစ်သည်။"></textarea>
                                                 </div>
                                                 @error('short_descp_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -286,7 +286,7 @@
                                                 <h5>Long Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                      <textarea id="editor1" name="long_descp_en" rows="10" cols="80">
-                                                        Long Description English
+                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                                     </textarea>                                         
                                                 </div>
                                                 @error('long_descp_en') 
@@ -299,7 +299,7 @@
                                                 <h5>Long Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <textarea id="editor2" name="long_descp_mm" rows="10" cols="80">
-                                                        အရှည်ဖော်ပြခြင်း
+                                                    Lorem Ipsum သည်ပုံနှိပ်ခြင်းနှင့်စာရိုက်ခြင်းလုပ်ငန်း၏စာလုံးများဖြစ်သည်။ Lorem Ipsum သည် ၁၅၀၀ ခုနှစ်များကတည်းကစက်မှုလုပ်ငန်း၏ standard dummy စာသားဖြစ်ခဲ့သည်။ အမည်မသိပရင်တာသည်အမျိုးအစားတစ်မျိုးကို ယူ၍ ၎င်းကိုနမူနာစာအုပ်တစ်အုပ်ဖြစ်အောင်မွှေသည့်အခါ။ ၎င်းသည်ရာစုနှစ်ငါးခုမျှသာမကဘဲ၊ မပြောင်းလဲဘဲကျန်ရှိနေသေးသောအီလက်ထရောနစ်စာရိုက်ပုံစံသို့ခုန်ပျံကျော်လွှားခဲ့သည်။ Lorem Ipsum ကျမ်းပိုဒ်များပါ ၀ င်သော Letraset စာရွက်များဖြန့်ချိခြင်းနှင့် ၁၉၆၀ ပြည့်လွန်နှစ်များတွင်လူသိများလာပြီး Lorem Ipsum ဗားရှင်းများအပါအ ၀ င် desktop ဖြန့်ချိရေးဆော့ဝဲများနှင့်အတူမကြာသေးမီကလူသိများခဲ့သည်။
                                                     </textarea>
                                                 </div>
                                                 @error('long_descp_mm') 

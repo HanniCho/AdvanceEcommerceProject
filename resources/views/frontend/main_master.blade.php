@@ -8,8 +8,8 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<link rel="icon" href="{{asset('backend/images/h-logo.png')}}" style="width:50px; height:50px;">
-<title>Hanni Shop</title>
+<link rel="icon" href="{{asset('backend/images/honey-logo.png')}}" style="width:50px; height:50px;">
+<title>@yield('title')</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap-select.min.css')}}">
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="{{asset('frontend/assets/css/font-awesome.css')}}">
 
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>

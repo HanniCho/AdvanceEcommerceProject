@@ -11,8 +11,8 @@
 				  <a href="index.html">
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
-						  <img src="{{asset('backend/images/h-logo.png')}}" style="width:50px; height:50px;" alt="Logo">
-						  <h3><b>H</b>anni <b>S</b>hop</h3>
+						  <img src="{{asset('backend/images/honey-logo.png')}}" style="width:60px; height:60px;" alt="Logo">
+						  <h3><i><b>H</b>oney <b>S</b>hop</i></h3>
 					 </div>
 				  </a>
 			  </div>

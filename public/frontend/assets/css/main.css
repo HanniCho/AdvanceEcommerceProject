@@ -1197,7 +1197,8 @@ header{background:#157ed2}
   padding:5px 0px 12px 0px;
 }
 .main-header .logo-holder {
-  margin-top: 10px;
+  text-align: center;
+  margin-top: -20px;
 }
 .main-header .top-search-holder .contact-row {
   line-height: 20px;

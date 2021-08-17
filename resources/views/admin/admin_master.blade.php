@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="{{asset('backend/images/favicon.ico')}}"> -->
-    <link rel="icon" href="{{asset('backend/images/h-logo.png')}}" style="width:50px; height:50px;">
+    <link rel="icon" href="{{asset('backend/images/honey-logo.png')}}" style="width:50px; height:50px;">
 
-    <title>Hanni Shop Admin - Dashboard</title>
+    <title>Honey Shop Admin - Dashboard</title>
     
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{asset('backend/css/vendors_css.css')}}">
