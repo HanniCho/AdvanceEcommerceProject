@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CurrencyController;
+use App\Http\Controllers\Frontend\CartController;
+
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -135,16 +137,25 @@ Route::get('/currency/usd', [CurrencyController::class, 'USD'])->name('usd.curre
 Route::get('/currency/kyat', [CurrencyController::class, 'KYAT'])->name('kyat.currency');
 
 //Product Detail Routes
-Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 //Product Tags Routes
-Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProduct']);
+Route::get('/product/tags/{tag}', [IndexController::class, 'TagWiseProduct']);
 
 //Subcategory Wise Routes
-Route::get('subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
+Route::get('/subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
 
 //SubSubcategory Wise Routes
-Route::get('subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
+Route::get('/subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
 
 //Product view modal with Ajax Routes
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+//Add to Cart Routes
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+//Mini Cart Get Data Routes
+Route::get('/product/mini/card/', [CartController::class, 'AddMiniCart']);
+
+//Add to Cart Routes
+Route::get('/minicard/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);

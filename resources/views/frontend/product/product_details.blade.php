@@ -69,7 +69,7 @@ Buy {{$product->product_name_en}}
 						</div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">@if(session()->get('language') == 'myanmar') {{$product->product_name_mm}} @else {{$product->product_name_en}} @endif</h1>
+							<h1 id="pname" class="name">@if(session()->get('language') == 'myanmar') {{$product->product_name_mm}} @else {{$product->product_name_en}} @endif</h1>
 							
 							<div class="rating-reviews m-t-20">
 								<div class="row">
@@ -134,43 +134,49 @@ Buy {{$product->product_name_en}}
 								<div class="row">	
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="info-title control-label">@if(session()->get('language') == 'myanmar') အရောင် @else Color @endif <span></span></label>
-											@if(session()->get('language') == 'myanmar') 
-											<select class="form-control unicase-form-control selectpicker" style="display: none;">
-												<option selected="" disabled="">အရောင်ရွေးပါ</option>
-												@foreach($product_color_mm as $color)
-													<option value="{{ $color }}">{{ $color}}</option>	
-												@endforeach
-											</select>
-											@else 
-											<select class="form-control unicase-form-control selectpicker" style="display: none;">
-												<option selected="" disabled="">--Select Color--</option>
-												@foreach($product_color_en as $color)
-													<option value="{{ $color }}">{{ ucwords($color)}}</option>	
-												@endforeach
-											</select>
-											@endif
-											
+											@if ($product->product_color_en == NULL)
+											@else
+												<label class="info-title control-label">@if(session()->get('language') == 'myanmar') အရောင် @else Color @endif <span></span></label>
+												@if(session()->get('language') == 'myanmar') 
+												<select id="color" class="form-control unicase-form-control selectpicker" style="display: none;">
+													<option selected="" disabled="">အရောင်ရွေးပါ</option>
+													@foreach($product_color_mm as $color)
+														<option value="{{ $color }}">{{ $color}}</option>	
+													@endforeach
+												</select>
+												@else 
+												<select id="color" class="form-control unicase-form-control selectpicker" style="display: none;">
+													<option selected="" disabled="">--Select Color--</option>
+													@foreach($product_color_en as $color)
+														<option value="{{ $color }}">{{ ucwords($color)}}</option>	
+													@endforeach
+												</select>
+												@endif
+											@endif			
 										</div>
 									</div>
 									<div class="col-sm-6">
-									<div class="form-group">
-											<label class="info-title control-label">@if(session()->get('language') == 'myanmar') ဆိုဒ် @else Size @endif <span></span></label>
-											@if(session()->get('language') == 'myanmar') 
-											<select class="form-control unicase-form-control selectpicker" style="display: none;">
-												<option selected="" disabled="">ဆိုဒ်ရွေးပါ</option>
-												@foreach($product_size_mm as $size)
-													<option value="{{ $size }}">{{ $size }}</option>	
-												@endforeach
-											</select>
-											@else 
-											<select class="form-control unicase-form-control selectpicker" style="display: none;">
-												<option selected="" disabled="">--Select Size--</option>
-												@foreach($product_size_en as $size)
-													<option value="{{ $size }}">{{ ucwords($size) }}</option>	
-												@endforeach
-											</select>
-											@endif											
+										<div class="form-group">
+											@if ($product->product_size_en == NULL)
+											@else
+												<label class="info-title control-label">@if(session()->get('language') == 'myanmar') ဆိုဒ် @else Size @endif <span></span></label>
+												@if(session()->get('language') == 'myanmar') 
+												<select id="size" class="form-control unicase-form-control selectpicker" style="display: none;">
+													<option selected="" disabled="">ဆိုဒ်ရွေးပါ</option>
+													@foreach($product_size_mm as $size)
+														<option value="{{ $size }}">{{ $size }}</option>	
+													@endforeach
+												</select>
+												@else 
+												<select id="size" class="form-control unicase-form-control selectpicker" style="display: none;">
+													<option selected="" disabled="">--Select Size--</option>
+													@foreach($product_size_en as $size)
+														<option value="{{ $size }}">{{ ucwords($size) }}</option>	
+													@endforeach
+												</select>
+												@endif	
+											@endif
+																					
 										</div>
 									</div>
 								</div><!-- /.row -->
@@ -189,13 +195,14 @@ Buy {{$product->product_name_en}}
 								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
 								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
 								                </div>
-								                <input type="text" value="1">
+								                <input type="number" id="qty" value="1" min="1">
 							              </div>
 							            </div>
 									</div>
 
 									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										<input type="hidden" id="product_id" value="{{$product->id}}" min="1">
+										<button type="submit" class="btn btn-primary mb-2" onclick="addToCart()"><i class="fa fa-shopping-cart inner-right-vs"></i>ADD TO CART</button>
 									</div>
 
 									
