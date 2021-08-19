@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('main_content')
 @section('title')
-Tag Wise Product
+SubCategory Wise Product
 @endsection
 <div class="breadcrumb">
   <div class="container">
@@ -26,7 +26,7 @@ Tag Wise Product
         <div class="sidebar-module-container">
           <div class="sidebar-filter"> 
             <!-- ============================================== SHOP BY CATEGORY ============================================== -->
-            @include('frontend.include.shop_by')    
+            @include('frontend.include.shop_by') 
             <!-- ============================================== SHOP BY CATEGORY : END ============================================== --> 
             
             <!-- ============================================== PRICE SILDER============================================== -->
@@ -239,7 +239,7 @@ Tag Wise Product
                           <div class="action">
                             <ul class="list-unstyled">
                               <li class="add-cart-button btn-group">
-                                <button class="btn btn-primary icon" type="button" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                               </li>
                               <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
@@ -296,7 +296,7 @@ Tag Wise Product
                               <div class="action">
                                 <ul class="list-unstyled">
                                   <li class="add-cart-button btn-group">
-                                    <button class="btn btn-primary icon" type="button" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                   </li>
                                   <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>

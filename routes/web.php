@@ -139,3 +139,12 @@ Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetai
 
 //Product Tags Routes
 Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProduct']);
+
+//Subcategory Wise Routes
+Route::get('subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
+
+//SubSubcategory Wise Routes
+Route::get('subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
+
+//Product view modal with Ajax Routes
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);

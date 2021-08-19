@@ -5,6 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+
+<!-- Add to Cart Modal -->
+<meta name="csrf-token" content="{{csrf_token()}}">
+
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -87,5 +91,148 @@
     }
     @endif
   </script>
+  <!-- add to cart -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong id="pname"></strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <img src="" id="pimage" class="card-img-top" alt="" style="width:200px; height: 200px;">
+                
+              </div>
+            </div>
+            <!-- end col-md-4 -->
+            <div class="col-md-4">
+              <ul class="list-group">
+                <li class="list-group-item">Product Price: 
+                  <strong  class="text-danger">$<span id="pprice"></span></strong>
+                  $<del id="oldprice"></del>
+                </li>
+                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                <li class="list-group-item">Stock :
+                  <span class="badge badge-pill badge-success" id="available" style="background:green; color:white;"></span>
+                  <span class="badge badge-pill badge-danger" id="stockout" style="background:red; color:white;"></span>
+                </li>
+              </ul>
+            </div>
+            <!-- end col-md-4 -->
+            <div class="col-md-4">
+              <div class="form-group" id="colorarea">
+                <label for="exampleFormControlSelect1">@if(session()->get('language') == 'myanmar') အရောင် @else Color @endif</label>
+                <select class="form-control" name="color" id="exampleFormControlSelect1">                  
+                </select>
+              </div>
+              <!-- end form-group -->
+              <div class="form-group" id="sizearea">
+                <label for="exampleFormControlSelect1">@if(session()->get('language') == 'myanmar') ဆိုဒ် @else Size @endif</label>
+                <select class="form-control" name="size" id="exampleFormControlSelect1">
+                  <option>1</option>
+                </select>
+              </div>
+              <!-- end form-group -->
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">@if(session()->get('language') == 'myanmar') အရေအတွက် @else Qty : @endif</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+
+              <!-- end form-group -->
+            </div>
+            <!-- end col-md-4 -->
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end modal-body -->        
+    </div>
+  </div>
+  <script type="text/javascript">
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name = "csrf-token"]').attr('content')
+      }
+    });
+    // Product View with Model
+    function productView(id){
+      // alert(id);
+
+      $.ajax({
+        url: "{{  url('/product/view/modal') }}/" + id,
+        type:"GET",
+        dataType:"json",
+        success: function (data) {
+          // console.log(data);
+          $('#pname').text(data.product.product_name_en);   
+          $('#pcode').text(data.product.product_code);
+          
+          $('#pcategory').text(data.product.category.category_name_en);
+          $('#pbrand').text(data.product.brand.brand_name_en);
+          $('#pimage').attr('src','/' + data.product.product_thumbnail);
+
+          //Product Price
+          if (data.product.discount_price == null) {
+            $('#pprice').text('');
+            $('#oldprice').text('');
+            $('#pprice').text(data.product.selling_price);
+            
+          } else {
+            $('#pprice').text(data.product.discount_price);
+            $('#oldprice').text(data.product.selling_price);
+          }
+          //End Product Price
+
+          //Stock
+          if(data.product.product_qty > 0){
+            $('#available').text('');
+            $('#stockout').text('');
+            $('#available').text('Available');
+
+          }else{
+            $('#available').text('');
+            $('#stockout').text('');
+            $('#stockout').text('Out of Stock');
+
+          }
+
+          // Color
+          $('select[name = "color"]').empty();
+          $.each(data.color,function (key, value) {
+            $('select[name = "color"]').append('<option value="' + value +'">' + value + '</option>');
+            if (data.color == "") {
+              $('#colorarea').hide();
+            } else {
+              $('#colorarea').show();
+            }
+          });
+
+          // Size
+          $('select[name = "size"]').empty();
+          $.each(data.size,function (key, value) {
+            $('select[name = "size"]').append('<option value="' + value +'">' + value + '</option>');
+            if (data.size == "") {
+              $('#sizearea').hide();
+            } else {
+              $('#sizearea').show();
+            }
+          });
+
+        },
+      });
+
+    }
+    // End Product View with Model
+  </script>
+  <!-- end add to cart -->
 </body>
 </html>

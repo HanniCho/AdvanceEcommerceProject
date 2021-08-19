@@ -190,7 +190,7 @@
                                             <div class="form-group">
                                                 <h5>Product Color English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_color_en" value="{{$product->product_color_en}}" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_color_en" value="{{$product->product_color_en}}"  class="form-control"> 
                                                 </div>
                                                 @error('product_color_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -201,7 +201,7 @@
                                             <div class="form-group">
                                                 <h5>Product Color Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_color_mm" value="{{$product->product_color_mm}}" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_color_mm" value="{{$product->product_color_mm}}" class="form-control"> 
                                                 </div>
                                                 @error('product_color_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
