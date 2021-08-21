@@ -191,10 +191,10 @@ Buy {{$product->product_name_en}}
 									<div class="col-sm-2">
 										<div class="cart-quantity">
 											<div class="quant-input">
-								                <div class="arrows">
+								                <!-- <div class="arrows">
 								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
 								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-								                </div>
+								                </div> -->
 								                <input type="number" id="qty" value="1" min="1">
 							              </div>
 							            </div>
@@ -440,6 +440,7 @@ Buy {{$product->product_name_en}}
 
 	<!-- ==== ================== BRANDS CAROUSEL ============================================== -->
 	@include('frontend.body.brands')
-	<!-- == = BRANDS CAROUSEL : END = -->	
+	<!-- ==== ================== BRANDS CAROUSEL :END ============================================== -->
+	
 </div><!-- /.container -->
 @endsection

@@ -12,12 +12,12 @@
               </a>
             </li>
             <li>
-              <a href="#"><i class="icon fa fa-heart"></i>
+              <a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>
                 @if(session()->get('language') == 'myanmar') ဆန္ဒစာရင်း @else Wishlist @endif
               </a>
             </li>
             <li>
-              <a href="#"><i class="icon fa fa-shopping-cart"></i>
+              <a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>
                 @if(session()->get('language') == 'myanmar') စျေးဝယ်ခြင်းတောင်း @else My Cart @endif
               </a>
             </li>
@@ -32,31 +32,19 @@
 
             @auth
               <li>
-                <a href="{{route('login')}}"><i class="icon fa fa-user"></i>
-                  @if(session()->get('language') == 'myanmar')
-                  အသုံးပြုသူပရိုဖိုင်
-                  @else
-                  User Profile
-                  @endif
+                <a href="{{route('dashboard')}}"><i class="icon fa fa-user"></i>
+                  @if(session()->get('language') == 'myanmar') အသုံးပြုသူပရိုဖိုင် @else User Profile @endif
                 </a>
               </li>
             @else
               <li>
                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>
-                  @if(session()->get('language') == 'myanmar')
-                  အကောင့်ဝင်မည်
-                  @else
-                  Login
-                  @endif
+                  @if(session()->get('language') == 'myanmar') အကောင့်ဝင်မည် @else Login @endif
                 </a>
               </li>
               <li>
                 <a href="{{route('register')}}"><i class="icon fa fa-lock"></i>
-                  @if(session()->get('language') == 'myanmar')
-                  အကောင့်သစ်ဖွင့်မည်
-                  @else
-                  Register
-                  @endif
+                  @if(session()->get('language') == 'myanmar') အကောင့်သစ်ဖွင့်မည် @else Register @endif
                 </a>
               </li>
             @endauth
@@ -69,11 +57,7 @@
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
-              @if(session()->get('language') == 'myanmar')
-                ငွေကြေး
-                @else
-                Currency
-                @endif
+              @if(session()->get('language') == 'myanmar') ငွေကြေး @else Currency @endif
                 </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 @if(session()->get('language') == 'myanmar')

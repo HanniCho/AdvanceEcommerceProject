@@ -35,15 +35,12 @@ class AdminController extends Controller
     public function __construct(StatefulGuard $guard)
     {
         $this->guard = $guard;
-         
+        //dd($this->guard);
     }
 
     public function loginForm(){
     	return view('auth.admin_login',['guard' => 'admin']);
     }
-
-
-
 
     /**
      * Show the login view.

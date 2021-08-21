@@ -41,7 +41,7 @@ class CartController extends Controller
                     'size' => $request->size, 
                 ],
             ]);
-            return response()->json(['success' => 'Product Added on Your Cart Successfully!']);
+            return response()->json(['error' => 'Product Added on Your Cart Successfully!']);
         }
         
     }

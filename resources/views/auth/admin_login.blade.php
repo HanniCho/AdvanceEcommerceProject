@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{asset('backend/images/favicon.ico')}}">
+    <!-- <link rel="icon" href="{{asset('backend/images/favicon.ico')}}"> -->
+	<link rel="icon" href="{{asset('backend/images/honey-logo.png')}}" style="width:50px; height:50px;">
 
     <title>Honey Shop Admin - Log in </title>
   
@@ -92,7 +93,7 @@
 
 
 	<!-- Vendor JS -->
-	<script src="{{asset('backend/')}}js/vendors.min.js"></script>
+	<script src="{{asset('backend/js/vendors.min.js')}}"></script>
     <script src="{{asset('../assets/icons/feather-icons/feather.min.js')}}"></script>	
 
 </body>

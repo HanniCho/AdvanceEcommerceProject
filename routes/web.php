@@ -12,6 +12,8 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CurrencyController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CartPageController;
 
 use App\Models\User;
 /*
@@ -38,12 +40,13 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
+    
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
-    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangedPassword'])->name('update.change.password');
+    Route::post('/admin/update/change/password', [AdminProfileController::class, 'AdminUpdateChangedPassword'])->name('admin.update.change.password');
 
 });
 // Admin Brands
@@ -159,3 +162,19 @@ Route::get('/product/mini/card/', [CartController::class, 'AddMiniCart']);
 
 //Add to Cart Routes
 Route::get('/minicard/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+//Add to Wishlist Routes
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishlist']);
+
+//Wishlist and Cart in Header section
+Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'User'],function(){
+    Route::get('/wishlist', [WishlistController::class, 'DisplayWishlists'])->name('wishlist');
+    Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
+    Route::get('/wishlist/product-remove/{rowId}', [WishlistController::class, 'RemoveWishlistProduct']);
+
+    Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+    Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+    Route::get('/card/product-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
+    Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
+    Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+});

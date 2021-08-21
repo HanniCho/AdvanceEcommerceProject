@@ -23,7 +23,7 @@
                                     <div class="form-group">
                                         <h5>Admin Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="name" class="form-control" required="" value="{{$editData->name}}">
+                                            <input type="text" name="name" class="form-control" required="" value="{{$adminData->name}}">
                                         </div>
                                     </div>
                             </div>
@@ -32,7 +32,7 @@
                                     <div class="form-group">
                                         <h5>Admin Email <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="email" name="email" class="form-control" required="" value="{{$editData->email}}">
+                                            <input type="email" name="email" class="form-control" required="" value="{{$adminData->email}}">
                                         </div>
                                     </div>
                             </div>
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="col-md-6">
-                            <img id="showimage" src="{{(!empty($editData->profile_photo_path)) ? url('upload/admin_images/'.$editData->profile_photo_path) : url('upload/no_image.jpg')}}" alt="Admin Profile Photo" style="width:100px;heigth=100px;" >
+                            <img id="showimage" src="{{(!empty($adminData->profile_photo_path)) ? url('upload/admin_images/'.$adminData->profile_photo_path) : url('upload/no_image.jpg')}}" alt="Admin Profile Photo" style="width:100px;heigth=100px;" >
                             </div>
 
                         </div>
