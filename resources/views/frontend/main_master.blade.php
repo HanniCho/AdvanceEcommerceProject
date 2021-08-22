@@ -97,7 +97,8 @@
 
   <!-- SweetAlert -->
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-  
+  <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
   <!-- add to cart  modal-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -343,6 +344,10 @@
         dataType:"json",
         success:function (data) {
           miniCart();
+          cart();
+          couponCalculation();
+          $('#couponField').show();
+          $('#coupon_name').val('');
           // Start Message 
           const Toast = Swal.mixin({
                         toast: true,
@@ -507,6 +512,9 @@
         success:function (data) {
           cart();
           miniCart();
+          couponCalculation();
+          $('#couponField').show();
+          $('#coupon_name').val('');
           // Start Message 
           const Toast = Swal.mixin({
                         toast: true,
@@ -527,7 +535,7 @@
                   title: data.error
               })
           }
-            // End Message 
+          // End Message 
 
         },
       });
@@ -540,6 +548,7 @@
         success:function (data) {
           cart();
           miniCart();
+          couponCalculation();
         },
 
       });
@@ -552,11 +561,140 @@
         success:function (data) {
           cart();
           miniCart();
+          couponCalculation();
         },
 
       });
     }
   </script>
   <!-- End Load MyCart Data  -->
+
+  <!-- Apply Coupon -->
+  <script type="text/javascript">
+    function applyCoupon() { 
+      var coupon_name = $('#coupon_name').val();
+      $.ajax({        
+        type: 'POST',
+        dataType:'json',
+        data:{coupon_name:coupon_name},
+        url: "{{ url('/coupon-apply') }}",
+        success:function (data) {
+          miniCart();
+          couponCalculation();
+          $('#couponField').hide();
+          // Start Message 
+          const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                      });
+          if ($.isEmptyObject(data.error)) {
+              Toast.fire({
+                  type: 'success',
+                  icon: 'success',
+                  title: data.success
+              })
+          }else{
+              Toast.fire({
+                  type: 'error',                  
+                  icon: 'error',
+                  title: data.error
+              });
+              $('#couponField').show();
+              $('#coupon_name').val('');
+          }
+          // End Message 
+        },
+      });
+    }
+    function couponCalculation() {
+      $.ajax({        
+        type: 'GET',
+        dataType:'json',
+        url: "{{ url('/coupon-calculation') }}",
+        success:function (data) {
+          if (data.total) { //without coupon apply
+            $('#couponCalField').html(
+               `<tr>
+                  <th>
+                      <div class="cart-sub-total">
+                          Subtotal<span class="inner-left-md">$${data.total}</span>
+                      </div>
+                      <div class="cart-grand-total">
+                          Grand Total<span class="inner-left-md">$${data.total}</span>
+                      </div>
+                  </th>
+                </tr>`
+            );
+          } else {//with coupon apply
+            $('#couponCalField').html(
+               `<tr>
+                  <th>
+                      <div class="cart-sub-total">
+                          Subtotal<span class="inner-left-md">$${data.subtotal}</span>
+                      </div>
+                      <div class="cart-sub-total">
+                          Coupon<span class="inner-left-md">${data.coupon_name}</span>
+                          <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i></button>
+                      </div>
+                      
+                      <div class="cart-sub-total">
+                          Discount Amount<span class="inner-left-md">$${data.discount_amount}</span>
+                      </div>
+                      <div class="cart-grand-total">
+                          Grand Total<span class="inner-left-md">$${data.total_amount}</span>
+                      </div>
+                  </th>
+                </tr>`
+            );
+          }
+        },
+      });
+    }
+    couponCalculation();
+  </script>
+  <!--End: Apply Coupon -->
+
+  <!-- Apply Remove -->
+  <script type="text/javascript">   
+    function couponRemove() {
+      $.ajax({        
+        type: 'GET',
+        dataType:'json',
+        url: "{{ url('/coupon-remove') }}",
+        success:function (data) {
+          miniCart();
+          couponCalculation();
+          $('#couponField').show();
+          $('#coupon_name').val('');
+
+          // Start Message 
+          const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                      });
+          if ($.isEmptyObject(data.error)) {
+              Toast.fire({
+                  type: 'success',
+                  icon: 'success',
+                  title: data.success
+              })
+          }else{
+              Toast.fire({
+                  type: 'error',                  
+                  icon: 'error',
+                  title: data.error
+              })
+          }
+          // End Message 
+        },
+      });
+    }
+    couponCalculation();
+  </script>
+  <!--End: Coupon Remove -->
 </body>
 </html>

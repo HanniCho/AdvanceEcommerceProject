@@ -216,4 +216,11 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/card/product-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
     Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
     Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
+    
 });
+//Coupon Routes
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
