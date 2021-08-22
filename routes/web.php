@@ -8,6 +8,9 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CurrencyController;
@@ -113,6 +116,42 @@ Route::prefix('slider')->group(function(){
 
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+
+});
+// Admin Cupons
+Route::prefix('coupon')->group(function(){
+    Route::get('/manage/coupon', [CouponController::class, 'ManageCoupon'])->name('manage.coupon'); 
+    Route::post('/store', [CouponController::class, 'CouponStore'])->name('coupon.store'); 
+    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
+    Route::post('/update', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+});
+
+// Admin Shipping 
+Route::prefix('shipping')->group(function(){
+
+    // Admin Shipping Division
+    Route::get('/manage/division', [ShippingAreaController::class, 'DivisionView'])->name('manage.division'); 
+    Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store'); 
+    Route::get('/division/edit/{id}', [ShippingAreaController::class, 'DivisionEdit'])->name('division.edit');
+    Route::post('/division/update', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
+    Route::get('/division/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
+
+    // Admin Shipping District
+    Route::get('/manage/district', [ShippingAreaController::class, 'DistrictView'])->name('manage.district'); 
+    Route::post('/district/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store'); 
+    Route::get('/district/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
+    Route::post('/district/update', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
+    Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
+    
+    // Admin Shipping State
+    Route::get('/manage/state', [ShippingAreaController::class, 'StateView'])->name('manage.state'); 
+    Route::post('/state/store', [ShippingAreaController::class, 'StateStore'])->name('state.store'); 
+    Route::get('/state/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
+    Route::post('/state/update', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
+    Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
+	
+    Route::get('/district/ajax/{division_id}', [ShippingAreaController::class, 'GetDistrict']); 
 
 });
 

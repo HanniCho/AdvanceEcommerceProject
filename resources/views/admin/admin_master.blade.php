@@ -31,15 +31,15 @@
 	
 <div class="wrapper">
 
-  @include('admin.body.header');
-  @include('admin.body.sidebar');
+  @include('admin.body.header')
+  @include('admin.body.sidebar')
 
   <!-- dynamic main content -->
   <div class="content-wrapper">
-	  @yield('admin');
+	  @yield('admin')
   </div>
   <!-- end main content -->
-  @include('admin.body.footer');
+  @include('admin.body.footer')
 
 </div>
 <!-- ./wrapper -->

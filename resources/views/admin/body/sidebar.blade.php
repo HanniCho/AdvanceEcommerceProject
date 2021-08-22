@@ -29,7 +29,7 @@
 		
         <li class="treeview {{($prefix == '/brand')? 'active':''}}">
           <a href="#">
-            <i data-feather="message-circle"></i>
+            <i data-feather="sun"></i>
             <span>Brands</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -42,7 +42,7 @@
         
         <li class="treeview {{($prefix == '/category')? 'active':''}}">
           <a href="#">
-            <i data-feather="message-circle"></i>
+            <i data-feather="list"></i>
             <span>Categories</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -63,7 +63,7 @@
 		  
         <li class="treeview {{($prefix == '/product')? 'active':''}}">
           <a href="#">
-            <i data-feather="grid"></i>
+            <i data-feather="umbrella"></i>
             <span>Products</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -82,7 +82,7 @@
         <li class="treeview {{($prefix == '/slilder')? 'active':''}}">
           <a href="#">
             <i data-feather="grid"></i>
-            <span>Slider</span>
+            <span>Sliders</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -93,40 +93,44 @@
             </li>
           </ul>
         </li>
-		
-        <li class="treeview">
+
+        <li class="treeview {{($prefix == '/coupon')? 'active':''}}">
           <a href="#">
-            <i data-feather="file"></i>
-            <span>Pages</span>
+            <i data-feather="gift"></i>
+            <span>Coupons</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-            <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-            <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-            <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-            <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
-          </ul>
-        </li> 		  
-		 
-        <li class="header nav-small-cap">User Interface</li>
-		  
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="grid"></i>
-            <span>Components</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
+            <li class="{{($route == 'manage.coupon')? 'active':''}}"><a href="{{route('manage.coupon')}}">
+              <i class="ti-more"></i>Manage Coupon</a>
+            </li>
           </ul>
         </li>
-		
+
+        <li class="treeview {{($prefix == '/shipping')? 'active':''}}">
+          <a href="#">
+            <i data-feather="map-pin"></i>
+            <span>Shipping Area</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'manage.division')? 'active':''}}"><a href="{{route('manage.division')}}">
+              <i class="ti-more"></i>Ship Division</a>
+            </li>
+            <li class="{{($route == 'manage.district')? 'active':''}}"><a href="{{route('manage.district')}}">
+              <i class="ti-more"></i>Ship District</a>
+            </li>
+            <li class="{{($route == 'manage.state')? 'active':''}}"><a href="{{route('manage.state')}}">
+              <i class="ti-more"></i>Ship State</a>
+            </li>
+          </ul>
+        </li>
+		 
+        <li class="header nav-small-cap">User Interface</li>		  
         <li class="treeview">
               <a href="#">
                 <i data-feather="credit-card"></i>
@@ -151,6 +155,6 @@
 		<!-- item-->
 		<a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
 		<!-- item-->
-		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
+		<a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
 	</div>
   </aside>
