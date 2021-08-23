@@ -22,7 +22,7 @@
               </a>
             </li>
             <li>
-              <a href="#"><i class="icon fa fa-check"></i>
+              <a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>
                 @if(session()->get('language') == 'myanmar') ငွေရှင်းမည် @else Checkout @endif
               </a>
             </li>
@@ -169,12 +169,12 @@
                 
                 <div class="clearfix cart-total">
                   <div class="pull-right"> 
-                    <span class="text">Sub Total :</span>
+                    <span class="text">Grand Total :</span>
                     <span class="price sign">$</span>
                     <span class='price' id="cartTotal"></span> 
                   </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> 
+                  <a href="{{route('checkout')}}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> 
                 </div>
                 <!-- /.cart-total-->                 
               </li>

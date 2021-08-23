@@ -355,7 +355,7 @@
     </section>
 	<!-- /.content -->
 </div>
-<script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function() {
         $('select[name="category_id"]').on('change', function(){
             var category_id = $(this).val();

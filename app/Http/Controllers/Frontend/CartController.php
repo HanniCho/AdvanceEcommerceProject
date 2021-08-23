@@ -9,6 +9,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Models\Product;
 use App\Models\Coupon;
+use App\Models\ShipDivision;
+use Auth;
 
 class CartController extends Controller
 {
@@ -92,6 +94,7 @@ class CartController extends Controller
                 'total_amount' => Cart::totalFloat() - (Cart::totalFloat() * ($coupon->coupon_discount / 100)),
             ]);
             return response()->json(array(
+                'validity' => true,
                 'success'=>'Coupon Applied Successfully!'
             ));
         }else {
@@ -120,5 +123,38 @@ class CartController extends Controller
     {
         Session::forget('coupon');
         return response()->json(['success'=>'Coupon Removed!']);
+    }
+    public function CheckoutCreate()
+    {
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                
+                if (Session::has('coupon')) {
+                    $coupon_name = Session::get('coupon')['coupon_name'];
+                    $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+                    $cartTotal = Cart::totalFloat() - (Cart::totalFloat() * ($coupon->coupon_discount / 100));
+                } else {
+                    $cartTotal =Cart::total();
+                }
+                $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+                return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','divisions'));
+            } else {
+                $notification = array(
+                'message' => 'Your Cart Empty. Please make shopping!',
+                'alert-type' => 'error'
+                );
+                return redirect()->to('/')->with($notification);
+            }
+            
+        } else {            
+            $notification = array(
+                'message' => 'Please Login First!',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+        
     }
 }

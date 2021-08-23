@@ -15,8 +15,11 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CurrencyController;
 use App\Http\Controllers\Frontend\CartController;
+
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 use App\Models\User;
 /*
@@ -151,8 +154,7 @@ Route::prefix('shipping')->group(function(){
     Route::post('/state/update', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
     Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 	
-    Route::get('/district/ajax/{division_id}', [ShippingAreaController::class, 'GetDistrict']); 
-
+    Route::get('/district/ajax/{division_id}', [ShippingAreaController::class, 'GetDistrict']);     
 });
 
 //Frontend All Routes//
@@ -205,7 +207,7 @@ Route::get('/minicard/product-remove/{rowId}', [CartController::class, 'RemoveMi
 //Add to Wishlist Routes
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishlist']);
 
-//Wishlist and Cart in Header section
+//Wishlist, Cart, Checkout in Header section(Can only access after login)
 Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'User'],function(){
     Route::get('/wishlist', [WishlistController::class, 'DisplayWishlists'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
@@ -217,10 +219,18 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
     Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
 
-    
+    //Checkout Route
+    Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+    //Stripe Payment Route
+    Route::post('/payment/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 });
 //Coupon Routes
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
+//Checkout Routes for binding Division, District, State
+Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'GetDistrict']); 
+Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'GetState']); 
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.info.store');

@@ -41,6 +41,9 @@
 <!-- SweetAlert -->
 <link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
 
+<!-- Stripe Payment -->
+<script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->
@@ -581,7 +584,11 @@
         success:function (data) {
           miniCart();
           couponCalculation();
-          $('#couponField').hide();
+
+          if(data.validity == true){
+            $('#couponField').hide();
+          }
+            
           // Start Message 
           const Toast = Swal.mixin({
                         toast: true,
