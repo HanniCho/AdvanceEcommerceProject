@@ -20,6 +20,9 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\User\CashController;
+
 
 use App\Models\User;
 /*
@@ -224,6 +227,15 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
 
     //Stripe Payment Route
     Route::post('/payment/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+
+    //Cash on Delivery Payment Route
+    Route::post('/payment/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
+
+    //User Order Routes
+    Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
+    Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
+
+
 });
 //Coupon Routes
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
