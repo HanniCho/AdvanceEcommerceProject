@@ -10,11 +10,13 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\NewsLetterController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CurrencyController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\NewsLetterSubscriptionController;
 
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
@@ -158,6 +160,15 @@ Route::prefix('shipping')->group(function(){
     Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 	
     Route::get('/district/ajax/{division_id}', [ShippingAreaController::class, 'GetDistrict']);     
+});
+// Admin NewsLetters
+Route::prefix('newsletter')->group(function(){
+	Route::get('/all', [NewsLetterController::class, 'DisplayNewsLetter'])->name('all.newsletter');
+    Route::get('/delete/{id}', [NewsLetterController::class, 'NewsLetterDelete'])->name('newsletter.delete');
+    Route::post('/store', [NewsLetterSubscriptionController::class, 'NewsLetterStore'])->name('newsletter.store');
+    
+    
+
 });
 
 //Frontend All Routes//

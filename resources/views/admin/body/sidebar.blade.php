@@ -130,7 +130,20 @@
           </ul>
         </li>
 		 
-        <li class="header nav-small-cap">User Interface</li>		  
+        <li class="header nav-small-cap">Others</li>		 
+
+        <li class="treeview {{($prefix == '/newsletter')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>NewsLetters</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.newsletter')? 'active':''}}"><a href="{{route('all.newsletter')}}"><i class="ti-more"></i>All NewsLetters</a></li>
+          </ul>
+        </li> 
         
       </ul>
     </section>

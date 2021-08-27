@@ -69,11 +69,8 @@
                         <h5>Category Icon <span class="text-danger">*</span></h5>
                         <div class="controls">
                             <input type="text"  name="category_icon" class="form-control">
-                            @if($errors->has('category_icon'))
-                            $('#addnew').modal('show');
-                            @endif
                             @error('category_icon')
-                                <span class="text-danger">{{$message}}</span>
+                                <span class="text-danger">{{$message}}</span>   
                             @enderror
                         </div>
                     </div>  

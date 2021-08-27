@@ -313,7 +313,8 @@
                             <hr>
                             <div class="row">                                
                                 <div class="col-md-6">
-                                    <div class="form-group"><div class="controls">
+                                    <div class="form-group">
+                                        <div class="controls">
                                             <fieldset>
                                                 <input type="checkbox" id="checkbox_2" name="hot_deals" value="1">
                                                 <label for="checkbox_2">Hot Deals</label>
@@ -326,7 +327,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"><div class="controls">
+                                    <div class="form-group">
+                                        <div class="controls">
                                             <fieldset>
                                                 <input type="checkbox" id="checkbox_4" name="special_offer" value="1">
                                                 <label for="checkbox_4">Special Offer</label>
