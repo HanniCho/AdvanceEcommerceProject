@@ -17,8 +17,8 @@ class CategoryController extends Controller
     public function CategoryStore(Request $request)
     {
         $request->validate([
-            'category_name_en' => 'required',
-            'category_name_mm'=> 'required',
+            'category_name_en' => 'required|unique:categories|max:255',
+            'category_name_mm'=> 'required|unique:categories',
             'category_icon'=> 'required',
         ],[
             'category_name_en.required' => 'Please input Category Name in English',

@@ -21,7 +21,7 @@
                                             <div class="form-group">
                                                 <h5>Brand <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="brand_id" class="form-control"  >
+                                                    <select name="brand_id" class="form-control"  required="">
                                                         <option value="" selected="" disabled="">Select Brand</option>
                                                         @foreach($brands as $brand)
                                                             <option value="{{ $brand->id }}" {{($brand->id == $product->brand_id) ? 'selected':''}}>{{ $brand->brand_name_en }}</option>	
@@ -40,7 +40,7 @@
                                             <div class="form-group">
                                                 <h5>Category<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="category_id" class="form-control"  >
+                                                    <select name="category_id" class="form-control"  required="">
                                                         <option value="" selected="" disabled="">Select Category</option>
                                                         @foreach($categories as $category)
                                                             <option value="{{ $category->id }}" {{($category->id == $product->category_id) ? 'selected':''}}>{{ $category->category_name_en }}</option>	
@@ -59,7 +59,7 @@
                                             <div class="form-group">
                                                 <h5>SubCategory <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subcategory_id" class="form-control"  >
+                                                    <select name="subcategory_id" class="form-control"  required="">
                                                         <option value="" selected="" disabled="">Select SubCategory</option>
                                                         @foreach($subcategories as $subcategory)
                                                             <option value="{{ $subcategory->id }}" {{($subcategory->id == $product->subcategory_id) ? 'selected':''}}>{{ $subcategory->subcategory_name_en }}</option>	
@@ -76,7 +76,7 @@
                                             <div class="form-group">
                                                 <h5>SubSubCategory <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subsubcategory_id" class="form-control"  >
+                                                    <select name="subsubcategory_id" class="form-control"  required="">
                                                         <option value="" selected="" disabled="">Select SubSubCategory</option>
                                                         @foreach($subsubcategories as $subsubcategory)
                                                             <option value="{{ $subsubcategory->id }}" {{($subsubcategory->id == $product->subsubcategory_id) ? 'selected':''}}>{{ $subsubcategory->subsubcategory_name_en }}</option>	
@@ -94,7 +94,7 @@
                                             <div class="form-group">
                                                 <h5>Product Name English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_name_en" value="{{$product->product_name_en}}" class="form-control"> 
+                                                    <input type="text" name="product_name_en" value="{{$product->product_name_en}}" required="" class="form-control"> 
                                                 </div>
                                                 @error('product_name_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -105,7 +105,7 @@
                                             <div class="form-group">
                                                 <h5>Product Name Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_name_mm" value="{{$product->product_name_mm}}" class="form-control"> 
+                                                    <input type="text" name="product_name_mm" value="{{$product->product_name_mm}}" required="" class="form-control"> 
                                                 </div>
                                                 @error('product_name_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -118,7 +118,7 @@
                                             <div class="form-group">
                                                 <h5>Product Code <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_code" value="{{$product->product_code}}" class="form-control"> 
+                                                    <input type="text" name="product_code" value="{{$product->product_code}}" required="" class="form-control"> 
                                                 </div>
                                                 @error('product_code') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -129,7 +129,7 @@
                                             <div class="form-group">
                                                 <h5>Product Quantity <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_qty" value="{{$product->product_qty}}" class="form-control"> 
+                                                    <input type="text" name="product_qty" value="{{$product->product_qty}}" required="" class="form-control"> 
                                                 </div>
                                                 @error('product_qty') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -142,7 +142,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_en" value="{{$product->product_tags_en}}" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_en" value="{{$product->product_tags_en}}" required="" data-role="tagsinput" class="form-control"> 
                                                 </div>
                                                 @error('product_tags_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -153,7 +153,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_mm" value="{{$product->product_tags_mm}}" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_mm" value="{{$product->product_tags_mm}}" required="" data-role="tagsinput" class="form-control"> 
                                                 </div>
                                                 @error('product_tags_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -214,7 +214,7 @@
                                             <div class="form-group">
                                                 <h5>Selling Price <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="selling_price" value="{{$product->selling_price}}" class="form-control"> 
+                                                    <input type="text" name="selling_price" value="{{$product->selling_price}}" required="" class="form-control"> 
                                                 </div>
                                                 @error('selling_price') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -246,7 +246,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_en" id="textarea" class="form-control" placeholder="Textarea">
+                                                    <textarea name="short_descp_en" id="textarea" class="form-control" required="" placeholder="Textarea">
                                                     {{$product->short_descp_en}}
                                                     </textarea>
                                                 </div>
@@ -259,7 +259,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" placeholder="Textare">
+                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" required="" placeholder="Textare">
                                                     {{$product->short_descp_mm}}
                                                     </textarea>
                                                 </div>
@@ -274,7 +274,7 @@
                                             <div class="form-group">
                                                 <h5>Long Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                     <textarea id="editor1" name="long_descp_en" rows="10" cols="80">
+                                                     <textarea id="editor1" name="long_descp_en" rows="10" cols="80" required="">
                                                      {!!$product->long_descp_en!!}
                                                     </textarea>                                         
                                                 </div>
@@ -287,7 +287,7 @@
                                             <div class="form-group">
                                                 <h5>Long Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea id="editor2" name="long_descp_mm" rows="10" cols="80">
+                                                    <textarea id="editor2" name="long_descp_mm" rows="10" cols="80" required="">
                                                         {!!$product->long_descp_mm!!}
                                                     </textarea>
                                                 </div>

@@ -20,7 +20,7 @@
                                             <div class="form-group">
                                                 <h5>Brand <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="brand_id" class="form-control"  >
+                                                    <select name="brand_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select Brand</option>
                                                         @foreach($brands as $brand)
                                                             <option value="{{ $brand->id }}">{{ $brand->brand_name_en }}</option>	
@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 <h5>Category<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="category_id" class="form-control"  >
+                                                    <select name="category_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select Category</option>
                                                         @foreach($categories as $category)
                                                             <option value="{{ $category->id }}">{{ $category->category_name_en }}</option>	
@@ -58,7 +58,7 @@
                                             <div class="form-group">
                                                 <h5>SubCategory <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subcategory_id" class="form-control"  >
+                                                    <select name="subcategory_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select SubCategory</option>
 
                                                     </select>
@@ -73,7 +73,7 @@
                                             <div class="form-group">
                                                 <h5>SubSubCategory <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subsubcategory_id" class="form-control"  >
+                                                    <select name="subsubcategory_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select SubSubCategory</option>
 
                                                     </select>
@@ -89,7 +89,7 @@
                                             <div class="form-group">
                                                 <h5>Product Name English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_name_en" class="form-control"> 
+                                                    <input type="text" name="product_name_en" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_name_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -100,7 +100,7 @@
                                             <div class="form-group">
                                                 <h5>Product Name Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_name_mm" class="form-control"> 
+                                                    <input type="text" name="product_name_mm" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_name_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -113,7 +113,7 @@
                                             <div class="form-group">
                                                 <h5>Product Code <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_code" class="form-control"> 
+                                                    <input type="text" name="product_code" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_code') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -124,7 +124,7 @@
                                             <div class="form-group">
                                                 <h5>Product Quantity <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_qty" class="form-control"> 
+                                                    <input type="text" name="product_qty" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_qty') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -137,7 +137,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_en" value="Slim Fit" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_en" value="Slim Fit" data-role="tagsinput" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_tags_en') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -148,7 +148,7 @@
                                             <div class="form-group">
                                                 <h5>Product Tags Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_tags_mm" value="Slim Fit" data-role="tagsinput" class="form-control"> 
+                                                    <input type="text" name="product_tags_mm" value="Slim Fit" data-role="tagsinput" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_tags_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -209,7 +209,7 @@
                                             <div class="form-group">
                                                 <h5>Selling Price <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="selling_price" class="form-control"> 
+                                                    <input type="text" name="selling_price" class="form-control" required=""> 
                                                 </div>
                                                 @error('selling_price') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -233,7 +233,7 @@
                                             <div class="form-group">
                                                 <h5>Main Thumbnail <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="file" name="product_thumbnail" onChange="mainThumbUrl(this)" class="form-control" > 
+                                                    <input type="file" name="product_thumbnail" onChange="mainThumbUrl(this)" class="form-control" required=""> 
                                                 </div>
                                                 @error('product_thumbnail') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -261,7 +261,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_en" id="textarea" class="form-control" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "></textarea>
+                                                    <textarea name="short_descp_en" id="textarea" class="form-control" required="" placeholder="Short Description"></textarea>
                                                 </div>
                                                 @error('short_descp_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -272,7 +272,7 @@
                                             <div class="form-group">
                                                 <h5>Short Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" placeholder="Lorem Ipsum သည်ပုံနှိပ်ခြင်းနှင့်စာရိုက်ခြင်းလုပ်ငန်း၏စာလုံးများဖြစ်သည်။"></textarea>
+                                                    <textarea name="short_descp_mm" id="textarea" class="form-control" required="" placeholder="Short Description"></textarea>
                                                 </div>
                                                 @error('short_descp_mm') 
                                                     <span class="text-danger">{{ $message }}</span>
@@ -285,7 +285,7 @@
                                             <div class="form-group">
                                                 <h5>Long Description English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                     <textarea id="editor1" name="long_descp_en" rows="10" cols="80">
+                                                     <textarea id="editor1" name="long_descp_en" rows="10" cols="80" required="">
                                                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                                     </textarea>                                         
                                                 </div>
@@ -298,7 +298,7 @@
                                             <div class="form-group">
                                                 <h5>Long Description Myanmar <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea id="editor2" name="long_descp_mm" rows="10" cols="80">
+                                                    <textarea id="editor2" name="long_descp_mm" rows="10" cols="80" required="">
                                                     Lorem Ipsum သည်ပုံနှိပ်ခြင်းနှင့်စာရိုက်ခြင်းလုပ်ငန်း၏စာလုံးများဖြစ်သည်။ Lorem Ipsum သည် ၁၅၀၀ ခုနှစ်များကတည်းကစက်မှုလုပ်ငန်း၏ standard dummy စာသားဖြစ်ခဲ့သည်။ အမည်မသိပရင်တာသည်အမျိုးအစားတစ်မျိုးကို ယူ၍ ၎င်းကိုနမူနာစာအုပ်တစ်အုပ်ဖြစ်အောင်မွှေသည့်အခါ။ ၎င်းသည်ရာစုနှစ်ငါးခုမျှသာမကဘဲ၊ မပြောင်းလဲဘဲကျန်ရှိနေသေးသောအီလက်ထရောနစ်စာရိုက်ပုံစံသို့ခုန်ပျံကျော်လွှားခဲ့သည်။ Lorem Ipsum ကျမ်းပိုဒ်များပါ ၀ င်သော Letraset စာရွက်များဖြန့်ချိခြင်းနှင့် ၁၉၆၀ ပြည့်လွန်နှစ်များတွင်လူသိများလာပြီး Lorem Ipsum ဗားရှင်းများအပါအ ၀ င် desktop ဖြန့်ချိရေးဆော့ဝဲများနှင့်အတူမကြာသေးမီကလူသိများခဲ့သည်။
                                                     </textarea>
                                                 </div>

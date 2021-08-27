@@ -24,6 +24,9 @@
                                         <h5>Admin Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="name" class="form-control" required="" value="{{$adminData->name}}">
+                                        @error('name')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                         </div>
                                     </div>
                             </div>
@@ -33,6 +36,9 @@
                                         <h5>Admin Email <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="email" name="email" class="form-control" required="" value="{{$adminData->email}}">
+                                            @error('email')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
                             </div>
@@ -46,7 +52,9 @@
                                         <h5>Profile Image<span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="file" id="image" name="profile_photo_path"  class="form-control" required=""> 
-                                        
+                                            @error('profile_photo_path')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
                             </div>

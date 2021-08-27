@@ -153,7 +153,7 @@ body.dark-skin {
   .dark-skin a.bg-light:hover, .dark-skin a.bg-light:focus {
     background-color: #4963a4 !important; }
 .dark-skin .form-control {
-  background-color: #272e48;
+  background-color: #3d3f44;
   color: #8a99b5; }
 .dark-skin .search-box .app-search .srh-btn {
   background-color: #415892; }
@@ -410,11 +410,11 @@ body.dark-skin {
 .dark-skin .media a:not(.btn):not(.avatar) {
   color: #8a99b5; }
 .dark-skin .modal-content {
-  background-color: #4963a4; }
+  background-color: #3d3f44; }
 .dark-skin .modal-header {
   border-color: rgba(255, 255, 255, 0.12); }
 .dark-skin .modal-footer {
-  border-color: rgba(255, 255, 255, 0.12); }
+  border-color: #3d3f44; }
 .dark-skin .media-body > p:last-child {
   color: #8a99b5; }
 .dark-skin .modal-fill .modal-content {

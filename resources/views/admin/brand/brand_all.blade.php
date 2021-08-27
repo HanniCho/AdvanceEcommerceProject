@@ -9,6 +9,8 @@
                 <div class="box">
                     <div class="box-header with-border">
                     <h3 class="box-title">Brand Lists</h3>
+                    <a href="" class="btn btn-rounded btn-primary mb-5 float-right" data-toggle="modal" data-target="#addnew">Add New</a>
+
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -105,4 +107,30 @@
     </section>
     <!-- /.content -->	  
 </div>
+<div class="modal fade" id="addnew">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add Brand</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="{{route('category.store')}}">
+                @csrf
+                <div class="modal-body">
+                                              
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-rounded btn-primary">ADD</button>
+                    <button type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">CLOSE</button>
+                </div>
+            </form>
+            
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 @endsection
