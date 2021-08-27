@@ -423,37 +423,70 @@
         dataType:"json",
         success:function (data) {      
 
-          var whishlist = "";
+          var whishlists = "";
           $.each(data,function (key, value) {
-            whishlist += `<tr>
-                            <td class="col-md-2"><img src="/${value.product.product_thumbnail}" alt="product img"></td>
-                            <td class="col-md-7">
-                                <div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
-                              
-                                <div class="price">
-                                ${value.product.discount_price ==NULL
-                                  ? `${value.product.selling_price}`
-                                  : `${value.product.discount_price} <span>$ ${value.product.selling_price}</span>`
-                                }                                
-                                </div>
-                            </td>
-                            <td class="col-md-2">
-                              <button class="btn btn-primary icon" type="button" title="Add Cart" 
-                              data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                              <button class="btn btn-primary cart-btn" type="button">Add to Cart</button>
-                            </td>
-                            <td class="col-md-1 close-btn">
-                                <a href="#" class=""><i class="fa fa-times"></i></a>
-                            </td>
-                          </tr>`;
-    });
-          $('#whishlist').html(whishlist);
+            whishlists += `<tr>
+                              <td class="col-md-2"><img src="/${value.product.product_thumbnail} " alt="imga"></td>
+                              <td class="col-md-7">
+                                  <div class="product-name"><a href="">${value.product.product_name_en}</a></div>
+                                  
+                                  <div class="price">
+                                  ${value.product.discount_price == null
+                                      ? `$${value.product.selling_price}`
+                                      :
+                                      `$${value.product.discount_price} <span>$${value.product.selling_price}</span>`
+                                  }
+                                      
+                                  </div>
+                              </td>
+                              <td class="col-md-2">
+                                  <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
+                              </td>
+                              <td class="col-md-1 close-btn">
+                                  <button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                              </td>
+                            </tr>`;
+          });
+          $('#whishlist').html(whishlists);
           
         },
       });
     }  
     whishlist();   
+    function wishlistRemove(id){
+    $.ajax({
+        type: 'GET',
+        url: '/user/wishlist/product-remove/'+id,
+        dataType:'json',
+        success:function(data){
+          whishlist();
+          // Start Message 
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  
+                  showConfirmButton: false,
+                  timer: 3000
+                })
+            if ($.isEmptyObject(data.error)) {
+                Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success
+                })
+            }else{
+                Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error
+                })
+            }
+            // End Message 
+        }
+    });
+  }
   </script>
+
   <!-- End Load MyCart Data  -->
   <script type="text/javascript">
     function cart() {      

@@ -225,7 +225,7 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToW
 Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'User'],function(){
     Route::get('/wishlist', [WishlistController::class, 'DisplayWishlists'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
-    Route::get('/wishlist/product-remove/{rowId}', [WishlistController::class, 'RemoveWishlistProduct']);
+    Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
 
     Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
     Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
