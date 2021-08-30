@@ -32,10 +32,15 @@
 
             @auth
               <li>
+                <a href="{{route('track.order')}}"><i class="icon fa fa-user"></i>
+                  @if(session()->get('language') == 'myanmar') အော်ဒါကြည့်မယ် @else Track Order @endif
+                </a>
+              </li>
+              <li>
                 <a href="{{route('dashboard')}}"><i class="icon fa fa-user"></i>
                   @if(session()->get('language') == 'myanmar') အသုံးပြုသူပရိုဖိုင် @else User Profile @endif
                 </a>
-              </li>
+              </li> 
             @else
               <li>
                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>
@@ -56,6 +61,7 @@
         
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
+            
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
               @if(session()->get('language') == 'myanmar') ငွေကြေး @else Currency @endif
                 </span><b class="caret"></b></a>

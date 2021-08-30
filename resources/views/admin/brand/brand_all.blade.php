@@ -5,7 +5,6 @@
     <section class="content">
         <div class="row">            
             <div class="col-8">
-
                 <div class="box">
                     <div class="box-header with-border">
                     <h3 class="box-title">Brand Lists</h3>

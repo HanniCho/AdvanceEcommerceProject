@@ -6,50 +6,40 @@
             @include('frontend.include.user_sidebar')
 
             <div class="col-md-8">
-                <div class="table-responsive">
-                <table class="table">
-                    <tbody>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
                         <tr style="background:#e2e2e2">
-                            <td class="col-md-1">
-                                <label for="">Date</label>
-                            </td>
-                            <td class="col-md-3">
-                                <label for="">Total</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">Payment</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">Invoice</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">Order</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">Action</label>
-                            </td>
+                            <th>Date</th>
+                            <th>Invoice</th>
+                            <th>Payment</th>
+                            <th>Total</th>
+                            <th>Order Status</th>
+                            <th>Action</th>
                         </tr>
-
+                    </thead>
+                    <tbody>
                         @foreach($orders as $order)
                         <tr>
-                            <td class="col-md-1">
-                                <label for="">{{$order->order_date}}</label>
+                            <td>{{$order->order_date}}</td>
+                            <td>{{$order->invoice_no}}</td>
+                            <td>{{$order->payment_method}}</td>
+                            <td>${{$order->amount}}</td>
+
+                            <td>
+                                @if ($order->status == "Pending")
+                                <span class="badge badge-pill badge-warning" style="background: #ffc107;">{{ $order->status }} </span> 
+                                @elseif ($order->status == "Payment Accepted")
+                                <span class="badge badge-pill badge-primary" style="background: #007bff;">{{ $order->status }} </span> 
+                                @elseif($order->status == "Process Delivery")
+                                <span class="badge badge-pill badge-info" style="background: #17a2b8;">{{ $order->status }} </span> 
+                                @elseif($order->status == "Delivered")
+                                <span class="badge badge-pill badge-success" style="background: #28a745;">{{ $order->status }} </span> 
+                                @else
+                                <span class="badge badge-pill badge-danger" style="background: #dc3545;">{{ $order->status }} </span> 
+                                @endif
                             </td>
-                            <td class="col-md-3">
-                                <label for="">${{$order->amount}}</label>
-                            </td>
-                            <td class="col-md-1">
-                                <label for="">{{$order->payment_method}}</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">{{$order->invoice_no}}</label>
-                            </td>
-                            <td class="col-md-2">
-                                <label for="">
-                                    <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $order->status }} </span>
-                                </label>
-                            </td>
-                            <td class="col-md-3">
+                            <td>
                                 <a href="{{ url('user/order_details/'.$order->id ) }}" class="btn btn-sm btn-primary" title="Order Details"><i class="fa fa-eye"></i>View</a>
                                 <a href="" class="btn btn-sm btn-danger" title="Invoice"><i class="fa fa-download" style="color: white;"></i>Invoice</a>
                             </td>
@@ -57,7 +47,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                </div><!-- table-responsive -->
+                
             </div><!-- col-md-8 -->
         
         </div><!-- <end row> -->

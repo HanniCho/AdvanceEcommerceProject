@@ -58,9 +58,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title"><strong>Add Category</strong></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <input type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                
             </div>
             <form method="post" action="{{route('category.store')}}">
                 @csrf
@@ -95,8 +95,8 @@
                     </div>                                 
                 </div>               
                 <div class="modal-footer float-right">
-                    <button type="submit" class="btn btn-rounded btn-primary">ADD</button>
-                    <button type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">CLOSE</button>
+                    <input type="submit" class="btn btn-rounded btn-primary" value="ADD">
+                    <input type="button" class="btn btn-rounded btn-danger" value="CLOSE" data-dismiss="modal">
                 </div>
             </form>
             

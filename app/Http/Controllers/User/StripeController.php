@@ -21,7 +21,7 @@ class StripeController extends Controller
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
         } else {
-            $total_amount = Cart::total();
+            $total_amount = Cart::totalFloat();
         }
 
         // Set your secret key. 

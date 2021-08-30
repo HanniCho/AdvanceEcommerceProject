@@ -412,6 +412,7 @@ body.dark-skin {
 .dark-skin .modal-content {
   background-color: #3d3f44; }
 .dark-skin .modal-header {
+  background-color: #3d3f44;
   border-color: rgba(255, 255, 255, 0.12); }
 .dark-skin .modal-footer {
   border-color: #3d3f44; }
@@ -426,7 +427,7 @@ body.dark-skin {
 .dark-skin .media-list-divided .media-list-body > .media {
   border-bottom-color: rgba(255, 255, 255, 0.2); }
 .dark-skin .close {
-  color: #acb9da;
+  color: #3d3f44;
   text-shadow: none; }
 .dark-skin .flex-column > li > a {
   color: #acb9da; }

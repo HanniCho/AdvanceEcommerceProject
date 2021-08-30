@@ -28,4 +28,31 @@ class AllUserController extends Controller
         return view('frontend.user.order.order_details',compact('order','orderItems','user'));
 
     }
+    public function TrackOrderView()
+    {
+        return view('frontend.user.order.track_order');
+    }
+    public function OrderTracking(Request $request)
+    {
+        $request->validate([
+            'order_number' => 'required',
+        ],[
+            'order_number.required' => 'Please input your order ID!',
+        ]);
+
+        $order = Order::where('order_number',$request->order_number)->first();
+        
+        if ($order) {            
+        //    dd($trackorder);
+            return view('frontend.user.order.trackingstatusview', compact('order'));
+        } else {
+           
+            $notification = array(
+                'message' => 'Invalid Order ID!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+        
+    }
 }

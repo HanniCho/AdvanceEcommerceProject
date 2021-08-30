@@ -26,7 +26,7 @@
 			    <span>Dashboard</span>
           </a>
         </li>  
-		
+       		
         <li class="treeview {{($prefix == '/brand')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
@@ -130,7 +130,8 @@
           </ul>
         </li>
 		 
-        <li class="header nav-small-cap">Others</li>		 
+        <li class="header nav-small-cap">Others</li>		
+        
 
         <li class="treeview {{($prefix == '/newsletter')? 'active':''}}">
           <a href="#">
@@ -144,16 +145,48 @@
             <li class="{{($route == 'all.newsletter')? 'active':''}}"><a href="{{route('all.newsletter')}}"><i class="ti-more"></i>All NewsLetters</a></li>
           </ul>
         </li> 
-        
+       
+        <li class="treeview {{($prefix == '/order')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.pendingorder')? 'active':''}}"><a href="{{route('all.pendingorder')}}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li class="{{($route == 'all.paymentedorder')? 'active':''}}"><a href="{{route('all.paymentedorder')}}"><i class="ti-more"></i>Payment Accept</a></li>
+            <li class="{{($route == 'all.cancelorder')? 'active':''}}"><a href="{{route('all.cancelorder')}}"><i class="ti-more"></i>Cancel Orders</a></li>
+            <li class="{{($route == 'all.process.delivery')? 'active':''}}"><a href="{{route('all.process.delivery')}}"><i class="ti-more"></i>Process Delivery</a></li>
+            <li class="{{($route == 'all.success.delivery')? 'active':''}}"><a href="{{route('all.success.delivery')}}"><i class="ti-more"></i>Delivery Success</a></li>
+
+          </ul>
+        </li> 
+
+        <li class="treeview {{($prefix == '/SEO')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>SEO Settings</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'seo.edit')? 'active':''}}"><a href="{{route('seo.edit')}}"><i class="ti-more"></i>Pending Orders</a></li>
+          </ul>
+        </li> 
+       
       </ul>
     </section>
 	
-	<div class="sidebar-footer">
-		<!-- item-->
-		<a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-		<!-- item-->
-		<a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
-		<!-- item-->
-		<a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
-	</div>
+    <div class="sidebar-footer">
+      <!-- item-->
+      <a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+      <!-- item-->
+      <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
+      <!-- item-->
+      <a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
+    </div>
+    
   </aside>

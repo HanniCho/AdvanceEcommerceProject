@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\NewsLetterController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\SEOController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -166,11 +168,28 @@ Route::prefix('newsletter')->group(function(){
 	Route::get('/all', [NewsLetterController::class, 'DisplayNewsLetter'])->name('all.newsletter');
     Route::get('/delete/{id}', [NewsLetterController::class, 'NewsLetterDelete'])->name('newsletter.delete');
     Route::post('/store', [NewsLetterSubscriptionController::class, 'NewsLetterStore'])->name('newsletter.store');
-    
-    
+});
+// Admin Orders
+Route::prefix('order')->group(function(){
+	Route::get('/pending', [OrderController::class, 'DisplayPendingOrder'])->name('all.pendingorder');
+    Route::get('/payment-accept', [OrderController::class, 'DisplayPaymentedOrder'])->name('all.paymentedorder');
+    Route::get('/cancel', [OrderController::class, 'DisplayCancelOrder'])->name('all.cancelorder');
+    Route::get('/process/delivery', [OrderController::class, 'DisplayProcessDeliveryOrder'])->name('all.process.delivery');
+    Route::get('/success/delivery', [OrderController::class, 'DisplayDeliverySuccessOrder'])->name('all.success.delivery');
+
+    Route::get('/details/{order_id}', [OrderController::class, 'OrderDetails'])->name('view.orderdetails');
+
+	Route::get('/payment-accept/{order_id}', [OrderController::class, 'PaymentAccept'])->name('payment.accept');
+	Route::get('/cancel-order/{order_id}', [OrderController::class, 'CancelOrder'])->name('cancel.order');
+    Route::get('/process-delivery/{order_id}', [OrderController::class, 'DeliveryProcess'])->name('process.delivery');
+    Route::get('/delivery-success/{order_id}', [OrderController::class, 'DeliverySuccess'])->name('success.delivery');
 
 });
-
+// Admin SEO Settings
+Route::prefix('SEO')->group(function(){
+    Route::get('/edit', [SEOController::class, 'SEOEdit'])->name('seo.edit');
+    Route::post('/update', [SEOController::class, 'SEOUpdate'])->name('seo.update');
+});
 //Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
@@ -246,6 +265,9 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
 
+    //Order Tracking Route
+    Route::get('/track/order-view', [AllUserController::class, 'TrackOrderView'])->name('track.order');
+    Route::post('/order/tracking', [AllUserController::class, 'OrderTracking'])->name('order.tracking');
 
 });
 //Coupon Routes
