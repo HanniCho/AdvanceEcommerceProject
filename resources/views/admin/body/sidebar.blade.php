@@ -175,17 +175,31 @@
           <ul class="treeview-menu">
             <li class="{{($route == 'seo.edit')? 'active':''}}"><a href="{{route('seo.edit')}}"><i class="ti-more"></i>Pending Orders</a></li>
           </ul>
-        </li> 
+        </li>
+        
+        <li class="treeview {{($prefix == '/report')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Reports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'today.order')? 'active':''}}"><a href="{{route('today.order')}}"><i class="ti-more"></i>Today Orders</a></li>
+            <li class="{{($route == 'today.delivery')? 'active':''}}"><a href="{{route('today.delivery')}}"><i class="ti-more"></i>Today Delivered Orders</a></li>
+            <li class="{{($route == 'this.month')? 'active':''}}"><a href="{{route('this.month')}}"><i class="ti-more"></i>This Month Orders</a></li>
+            <li class="{{($route == 'search.report')? 'active':''}}"><a href="{{route('search.report')}}"><i class="ti-more"></i>Search Report</a></li>
+
+          </ul>
+        </li>
        
       </ul>
     </section>
 	
-    <div class="sidebar-footer">
-      <!-- item-->
+    <div class="sidebar-footer">     
       <a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-      <!-- item-->
       <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
-      <!-- item-->
       <a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
     </div>
     

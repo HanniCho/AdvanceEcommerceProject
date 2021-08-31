@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\NewsLetterController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\SEOController;
+use App\Http\Controllers\Backend\ReportController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -189,6 +190,16 @@ Route::prefix('order')->group(function(){
 Route::prefix('SEO')->group(function(){
     Route::get('/edit', [SEOController::class, 'SEOEdit'])->name('seo.edit');
     Route::post('/update', [SEOController::class, 'SEOUpdate'])->name('seo.update');
+});
+// Admin ReportsRoutes
+Route::prefix('report')->group(function(){
+    Route::get('/today-order', [ReportController::class, 'TodayOrder'])->name('today.order');
+    Route::get('/today-delivery', [ReportController::class, 'TodayDelivery'])->name('today.delivery');
+    Route::get('/this-month-order', [ReportController::class, 'ThisMonth'])->name('this.month');
+    Route::get('/search', [ReportController::class, 'SearchReport'])->name('search.report');
+
+    Route::post('/search-by-year', [ReportController::class, 'SearchByYear'])->name('search.by.year');
+
 });
 //Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
