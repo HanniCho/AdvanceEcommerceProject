@@ -5,6 +5,8 @@
     <a href="{{route('user.profile')}}" class="btn btn-primary btn-sm btn-block">@if(session()->get('language') == 'myanmar') ပရိုဖိုင် @else Profile @endif</a>
     <a href="{{route('user.change.password')}}" class="btn btn-primary btn-sm btn-block">@if(session()->get('language') == 'myanmar') စကားဝှက်ပြောင်းမည် @else Change Password @endif</a>
     <a href="{{route('my.orders')}}" class="btn btn-primary btn-sm btn-block">@if(session()->get('language') == 'myanmar') အော်ဒါများ @else Orders @endif</a>
+    <a href="{{route('delivered.order')}}" class="btn btn-primary btn-sm btn-block">@if(session()->get('language') == 'myanmar') အော်ဒါများ @else Return Orders @endif</a>
+
     <a href="{{route('user.logout')}}" class="btn btn-danger btn-sm btn-block">@if(session()->get('language') == 'myanmar') အကောင့်မှထွက်မည် @else Logout @endif</a>
     </ul>
 </div>

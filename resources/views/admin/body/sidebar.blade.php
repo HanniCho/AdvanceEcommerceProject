@@ -3,9 +3,9 @@
   $route = Route::current()->getName();
 @endphp
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
+<aside class="main-sidebar" style="overflow:auto!important">
     <!-- sidebar-->
-    <section class="sidebar">	
+    <section class="sidebar" style="overflow:auto!important">	
 		  <div class="user-profile">
 			  <div class="ulogo">
 				  <a href="{{url('admin/dashboard')}}">
@@ -26,7 +26,24 @@
 			    <span>Dashboard</span>
           </a>
         </li>  
-       		
+
+        
+        <li class="treeview {{($prefix == '/admin')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Admin Roles</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'add.admin')? 'active':''}}"><a href="{{route('add.admin')}}"><i class="ti-more"></i>Add Admin</a></li>
+            <li class="{{($route == 'all.admin')? 'active':''}}"><a href="{{route('all.admin')}}"><i class="ti-more"></i>All Admins</a></li>
+          </ul>
+        </li>
+        
+
+        
         <li class="treeview {{($prefix == '/brand')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
@@ -39,6 +56,8 @@
             <li class="{{($route == 'all.brand')? 'active':''}}"><a href="{{route('all.brand')}}"><i class="ti-more"></i>All Brands</a></li>
           </ul>
         </li>
+       
+
         
         <li class="treeview {{($prefix == '/category')? 'active':''}}">
           <a href="#">
@@ -60,7 +79,7 @@
             </li>
           </ul>
         </li>
-		  
+        
         <li class="treeview {{($prefix == '/product')? 'active':''}}">
           <a href="#">
             <i data-feather="umbrella"></i>
@@ -77,7 +96,7 @@
               <i class="ti-more"></i>Manage Product</a>
             </li>
           </ul>
-        </li>
+        </li> 
 
         <li class="treeview {{($prefix == '/slilder')? 'active':''}}">
           <a href="#">
@@ -193,12 +212,52 @@
 
           </ul>
         </li>
-       
+
+        <li class="treeview {{($prefix == '/return')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Return Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.returnrequest')? 'active':''}}"><a href="{{route('all.returnrequest')}}"><i class="ti-more"></i>All Requests</a></li>
+            <li class="{{($route == 'success.returnrequest')? 'active':''}}"><a href="{{route('success.returnrequest')}}"><i class="ti-more"></i>Success Requests</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{($prefix == '/contact-message')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Contact Messages</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class=""><a href=""><i class="ti-more"></i>New Message</a></li>
+            <li class=""><a href=""><i class="ti-more"></i>All Messages</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{($prefix == '/contact-message')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Product Comments</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class=""><a href=""><i class="ti-more"></i>New Comment</a></li>
+            <li class=""><a href=""><i class="ti-more"></i>All Comments</a></li>
+          </ul>
+        </li>
+      </ul>       
       </ul>
     </section>
 	
     <div class="sidebar-footer">     
-      <a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+      <a href="{{route('admin.site.setting')}}" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
       <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
       <a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
     </div>

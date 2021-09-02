@@ -14,6 +14,9 @@ use App\Http\Controllers\Backend\NewsLetterController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\SEOController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\UserRoleController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\ReturnController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -61,6 +64,9 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/change/password', [AdminProfileController::class, 'AdminUpdateChangedPassword'])->name('admin.update.change.password');
+
+    Route::get('/admin/site/setting', [SettingController::class, 'SiteSetting'])->name('admin.site.setting');
+    Route::post('/admin/site/setting/update', [SettingController::class, 'UpdateSiteSetting'])->name('site.setting.update');
 
 });
 // Admin Brands
@@ -201,6 +207,21 @@ Route::prefix('report')->group(function(){
     Route::post('/search-by-year', [ReportController::class, 'SearchByYear'])->name('search.by.year');
 
 });
+// Admin Role Routes 
+Route::prefix('admin')->group(function(){
+    Route::get('/all', [UserRoleController::class, 'AllAdmin'])->name('all.admin');
+    Route::get('/add', [UserRoleController::class, 'AddAdmin'])->name('add.admin');
+    Route::post('/store', [UserRoleController::class, 'AdminStore'])->name('admin.store');     
+    Route::get('/edit/{id}', [UserRoleController::class, 'AdminEdit'])->name('admin.edit');
+    Route::post('/update', [UserRoleController::class, 'AdminUpdate'])->name('admin.update');
+    Route::get('/delete/{id}', [UserRoleController::class, 'AdminDelete'])->name('admin.delete'); 
+});
+// Admin Return Order Routes
+Route::prefix('return')->group(function(){
+	Route::get('/all/requests', [ReturnController::class, 'DisplayReturnRequest'])->name('all.returnrequest');
+    Route::get('/approve/{order_id}', [ReturnController::class, 'ApproveReutrn'])->name('approve.return');
+	Route::get('/request/success', [ReturnController::class, 'SuccessReturnRequest'])->name('success.returnrequest');
+});
 //Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
@@ -275,6 +296,11 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     //User Order Routes
     Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
+    
+     //Return Order Routes
+    Route::get('/delivered/order-list', [AllUserController::class, 'DeliveredOrderList'])->name('delivered.order');
+    Route::get('/request/return-order/{order_id}', [AllUserController::class, 'RequestReturn'])->name('request.return');
+
 
     //Order Tracking Route
     Route::get('/track/order-view', [AllUserController::class, 'TrackOrderView'])->name('track.order');

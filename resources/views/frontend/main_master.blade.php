@@ -75,33 +75,57 @@
 <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
 <!-- Toastr -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<script>
-    @if (Session::has('message')) {
-      var type = "{{Session::get('alert-type','info')}}";
-      switch (type) {
-        case 'info':
-          toastr.info("{{Session::get('message')}}");
-          break;
-        case 'success':
-          toastr.success("{{Session::get('message')}}");
-          break;
-        case 'warning':
-          toastr.warining("{{Session::get('message')}}");
-          break;
-        case 'error':
-          toastr.error("{{Session::get('message')}}");
-          break;      
-        default:
-          break;
-      }
+<script>
+  @if (Session::has('message')) {
+    var type = "{{Session::get('alert-type','info')}}";
+    switch (type) {
+      case 'info':
+        toastr.info("{{Session::get('message')}}");
+        break;
+      case 'success':
+        toastr.success("{{Session::get('message')}}");
+        break;
+      case 'warning':
+        toastr.warining("{{Session::get('message')}}");
+        break;
+      case 'error':
+        toastr.error("{{Session::get('message')}}");
+        break;      
+      default:
+        break;
     }
-    @endif
+  }
+  @endif
+</script>
+
+<!-- SweetAlert -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(document).on('click','#return',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+          title: 'Are you sure want to return this?',
+          text: "Once returned, your money will get back!",
+          icon: 'danger',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, return it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = link;
+            Swal.fire(
+              'Returned Order!',
+              'Your order has been returned.',
+              'success'
+            )
+          }
+        })
+      });
+    });
   </script>
-
-  <!-- SweetAlert -->
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-  <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-
   <!-- add to cart  modal-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -12,17 +12,17 @@ class AdminProfileController extends Controller
 {
     public function AdminProfile()
     {
-        $adminData = Admin::find(1);
+        $adminData = Admin::find(Auth::id());
         return view('admin.profile.admin_profile',compact('adminData'));
     }
     public function AdminProfileEdit()
     {        
-        $adminData = Admin::find(1);            
+        $adminData = Admin::find(Auth::id());            
         return view('admin.profile.admin_profile_edit',compact('adminData'));
     }
     public function AdminProfileStore(Request $request)
     {
-        $data = Admin::find(1);
+        $data = Admin::find(Auth::id());
         $data->name = $request->name;
         $data->email = $request->email;
 
@@ -34,7 +34,7 @@ class AdminProfileController extends Controller
             $profile_photo->move(public_path('upload/admin_images'),$filename);
             $data['profile_photo_path'] = $filename;
         }
-        $data->save();
+        $data->update();
 
         //For toastr message
         $notification = array(
@@ -55,9 +55,9 @@ class AdminProfileController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        $hashedPassword = Admin::find(1)->password;
+        $hashedPassword = Admin::find(Auth::id())->password;
         if (Hash::check($request->oldpassword,$hashedPassword)) {
-            $admin = Admin::find(1);
+            $admin = Admin::find(Auth::id());
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::logout();

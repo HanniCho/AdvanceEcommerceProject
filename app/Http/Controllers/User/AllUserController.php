@@ -55,4 +55,24 @@ class AllUserController extends Controller
         }
         
     }
+    public function DeliveredOrderList()
+    {
+        $user = User::find(Auth::user()->id);
+
+        $orders = Order::where('user_id',Auth::id())->where('status','Delivered')
+                        ->orderBy('id','DESC')->limit(5)->get();
+        return view('frontend.user.returnorder.return_order',compact('orders','user'));
+    }
+    public function RequestReturn($order_id)
+    {
+        Order::where('id',$order_id)->update([
+            'is_return_order' => 1,            
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Return Order Requested!',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }
