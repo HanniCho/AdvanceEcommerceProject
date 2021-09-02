@@ -226,7 +226,7 @@
             <li class="{{($route == 'success.returnrequest')? 'active':''}}"><a href="{{route('success.returnrequest')}}"><i class="ti-more"></i>Success Requests</a></li>
           </ul>
         </li>
-        <li class="treeview {{($prefix == '/contact-message')? 'active':''}}">
+        <li class="treeview {{($prefix == '/contact')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
             <span>Contact Messages</span>
@@ -239,7 +239,7 @@
             <li class=""><a href=""><i class="ti-more"></i>All Messages</a></li>
           </ul>
         </li>
-        <li class="treeview {{($prefix == '/contact-message')? 'active':''}}">
+        <li class="treeview {{($prefix == '/comment')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
             <span>Product Comments</span>
