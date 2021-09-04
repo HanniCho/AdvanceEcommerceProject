@@ -18,6 +18,7 @@ class ReturnController extends Controller
     {
         Order::where('id',$order_id)->update([
             'is_return_order' => 2,
+            'status' => 'Returned',
             'return_date' => Carbon::now()->format('d F Y'),
             'updated_at' => Carbon::now(),
         ]);

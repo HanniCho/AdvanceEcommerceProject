@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -87,6 +89,14 @@ class OrderController extends Controller
     }
     public function DeliverySuccess($order_id)
     {
+        $orderItems = OrderItem::where('order_id',$order_id)->get();
+        foreach ($orderItems as $item) {
+            Product::where('id',$item->product_id)->update([
+                'product_qty' => DB::raw('product_qty-'.$item->qty),
+
+            ]);
+        }
+
         Order::where('id',$order_id)->update([
             'status' => 'Delivered',
             'delivered_date' => Carbon::now()->format('d F Y'),

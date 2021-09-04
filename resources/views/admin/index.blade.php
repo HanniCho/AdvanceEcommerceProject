@@ -1,7 +1,25 @@
 <!-- admin\admin_master-->
 @extends('admin.admin_master')
 @section('admin')
+@php
+$today = App\Models\Order::where('status','Delivered')
+                ->where('delivered_date',Carbon\Carbon::now()->format('d F Y'))
+                ->where('is_return_order',0)->sum('amount');
+$month = App\Models\Order::where('status','Delivered')
+                ->where('order_month',Carbon\Carbon::now()->format('F'))
+                ->where('is_return_order',0)->sum('amount');
+$year = App\Models\Order::where('status','Delivered')
+                ->where('order_year',Carbon\Carbon::now()->format('Y'))
+                ->where('is_return_order',0)->sum('amount');
+$return = App\Models\Order::where('status','Returned')
+                ->where('order_year',Carbon\Carbon::now()->format('Y'))->sum('amount');
 
+$users = App\Models\User::get();
+$brands = App\Models\Brand::get();
+$products = App\Models\Product::get();
+
+$returns = App\Models\Order::where('is_return_order',2)->get();
+@endphp
 <div class="container-full">
     <!-- Main content -->
     <section class="content">
@@ -13,8 +31,8 @@
                             <i class="text-primary mr-0 font-size-24 mdi mdi-account-multiple"></i>
                         </div>
                         <div>
-                            <p class="text-mute mt-20 mb-0 font-size-16">New Customers</p>
-                            <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Today's Sales</p>
+                            <h3 class="text-white mb-0 font-weight-500">${{$today}}<small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
                         </div>
                     </div>
                 </div>
@@ -26,8 +44,8 @@
                             <i class="text-warning mr-0 font-size-24 mdi mdi-car"></i>
                         </div>
                         <div>
-                            <p class="text-mute mt-20 mb-0 font-size-16">Sold Cars</p>
-                            <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+                            <p class="text-mute mt-20 mb-0 font-size-16">This Month's Sales</p>
+                            <h3 class="text-white mb-0 font-weight-500">${{$month}}<small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
                         </div>
                     </div>
                 </div>
@@ -39,8 +57,8 @@
                             <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
                         </div>
                         <div>
-                            <p class="text-mute mt-20 mb-0 font-size-16">Sales Lost</p>
-                            <h3 class="text-white mb-0 font-weight-500">$1,250 <small class="text-danger"><i class="fa fa-caret-down"></i> -0.5%</small></h3>
+                            <p class="text-mute mt-20 mb-0 font-size-16">This Year's Sales</p>
+                            <h3 class="text-white mb-0 font-weight-500">${{$year}}<small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
                         </div>
                     </div>
                 </div>
@@ -52,13 +70,64 @@
                             <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
                         </div>
                         <div>
-                            <p class="text-mute mt-20 mb-0 font-size-16">Inbound Call</p>
-                            <h3 class="text-white mb-0 font-weight-500">1,460 <small class="text-danger"><i class="fa fa-caret-up"></i> -1.5%</small></h3>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Total Return Money</p>
+                            <h3 class="text-danger mb-0 font-weight-500">${{$return}} <small class="text-danger"><i class="fa fa-caret-down"></i></small></h3>
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <div class="col-xl-3 col-6">
+                <div class="box overflow-hidden pull-up">
+                    <div class="box-body">							
+                        <div class="icon bg-danger-light rounded w-60 h-60">
+                            <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
+                        </div>
+                        <div>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Total Customers</p>
+                            <h3 class="text-success float-right mb-0 font-weight-500">{{count($users)}} <small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-6">
+                <div class="box overflow-hidden pull-up">
+                    <div class="box-body">							
+                        <div class="icon bg-danger-light rounded w-60 h-60">
+                            <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
+                        </div>
+                        <div>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Total Brands</p>
+                            <h3 class="text-success float-right mb-0 font-weight-500">{{count($brands)}} <small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-6">
+                <div class="box overflow-hidden pull-up">
+                    <div class="box-body">							
+                        <div class="icon bg-danger-light rounded w-60 h-60">
+                            <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
+                        </div>
+                        <div>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Total Products</p>
+                            <h3 class="text-success float-right mb-0 font-weight-500">{{count($products)}} <small class="text-success"><i class="fa fa-caret-up"></i></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-6">
+                <div class="box overflow-hidden pull-up">
+                    <div class="box-body">							
+                        <div class="icon bg-danger-light rounded w-60 h-60">
+                            <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
+                        </div>
+                        <div>
+                            <p class="text-mute mt-20 mb-0 font-size-16">Total Returns</p>
+                            <h3 class="text-danger float-right mb-0 font-weight-500">{{count($returns)}} <small class="text-danger"><i class="fa fa-caret-down"></i></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-12">
                 <div class="box">
                     <div class="box-header">

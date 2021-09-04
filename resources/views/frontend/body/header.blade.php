@@ -53,7 +53,11 @@
                 </a>
               </li>
             @endauth
-            
+            <li>
+                <a href="{{route('contact')}}"><i class="icon fa fa-phone"></i>
+                  @if(session()->get('language') == 'myanmar') ဆက်သွယ်ရန် @else Contact @endif
+                </a>
+              </li>
             
           </ul>
         </div>

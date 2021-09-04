@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\UserRoleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\ReturnController;
+use App\Http\Controllers\Backend\StockController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\ContactController;
 
 
 use App\Models\User;
@@ -197,6 +199,10 @@ Route::prefix('SEO')->group(function(){
     Route::get('/edit', [SEOController::class, 'SEOEdit'])->name('seo.edit');
     Route::post('/update', [SEOController::class, 'SEOUpdate'])->name('seo.update');
 });
+// Admin Stock Management
+Route::prefix('stock')->group(function(){
+    Route::get('/manage', [StockController::class, 'ManageStock'])->name('manage.stock');
+});
 // Admin ReportsRoutes
 Route::prefix('report')->group(function(){
     Route::get('/today-order', [ReportController::class, 'TodayOrder'])->name('today.order');
@@ -222,6 +228,10 @@ Route::prefix('return')->group(function(){
     Route::get('/approve/{order_id}', [ReturnController::class, 'ApproveReutrn'])->name('approve.return');
 	Route::get('/request/success', [ReturnController::class, 'SuccessReturnRequest'])->name('success.returnrequest');
 });
+
+// Admin Contact Message Routes
+Route::get('/contact/all', [ContactController::class, 'DisplayAllMessages'])->name('all.contactmessage');
+
 //Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
@@ -301,7 +311,6 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/delivered/order-list', [AllUserController::class, 'DeliveredOrderList'])->name('delivered.order');
     Route::get('/request/return-order/{order_id}', [AllUserController::class, 'RequestReturn'])->name('request.return');
 
-
     //Order Tracking Route
     Route::get('/track/order-view', [AllUserController::class, 'TrackOrderView'])->name('track.order');
     Route::post('/order/tracking', [AllUserController::class, 'OrderTracking'])->name('order.tracking');
@@ -316,3 +325,7 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'GetDistrict']); 
 Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'GetState']); 
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.info.store');
+
+//Contact Route
+Route::get('/contact', [ContactController::class, 'ContactView'])->name('contact');
+Route::post('/contact/send/message', [ContactController::class, 'ContactStore'])->name('contact.store');

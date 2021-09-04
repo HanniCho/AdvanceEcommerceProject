@@ -30,7 +30,7 @@
         
         <li class="treeview {{($prefix == '/admin')? 'active':''}}">
           <a href="#">
-            <i data-feather="sun"></i>
+            <i data-feather="alert-triangle"></i>
             <span>Admin Roles</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -98,6 +98,8 @@
           </ul>
         </li> 
 
+        
+
         <li class="treeview {{($prefix == '/slilder')? 'active':''}}">
           <a href="#">
             <i data-feather="grid"></i>
@@ -148,23 +150,7 @@
             </li>
           </ul>
         </li>
-		 
-        <li class="header nav-small-cap">Others</li>		
-        
 
-        <li class="treeview {{($prefix == '/newsletter')? 'active':''}}">
-          <a href="#">
-            <i data-feather="sun"></i>
-            <span>NewsLetters</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="{{($route == 'all.newsletter')? 'active':''}}"><a href="{{route('all.newsletter')}}"><i class="ti-more"></i>All NewsLetters</a></li>
-          </ul>
-        </li> 
-       
         <li class="treeview {{($prefix == '/order')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
@@ -181,8 +167,50 @@
             <li class="{{($route == 'all.success.delivery')? 'active':''}}"><a href="{{route('all.success.delivery')}}"><i class="ti-more"></i>Delivery Success</a></li>
 
           </ul>
-        </li> 
+        </li>
 
+        <li class="treeview {{($prefix == '/return')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Return Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.returnrequest')? 'active':''}}"><a href="{{route('all.returnrequest')}}"><i class="ti-more"></i>All Requests</a></li>
+            <li class="{{($route == 'success.returnrequest')? 'active':''}}"><a href="{{route('success.returnrequest')}}"><i class="ti-more"></i>Success Requests</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview {{($prefix == '/newsletter')? 'active':''}}">
+          <a href="#">
+            <i data-feather="mail"></i>
+            <span>NewsLetters</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.newsletter')? 'active':''}}"><a href="{{route('all.newsletter')}}"><i class="ti-more"></i>All NewsLetters</a></li>
+          </ul>
+        </li> 
+		 
+        <li class="header nav-small-cap">Others</li>		
+
+        <li class="treeview {{($prefix == '/stock')? 'active':''}}">
+          <a href="#">
+            <i data-feather="layers"></i>
+            <span>Stocks</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'manage.stock')? 'active':''}}"><a href="{{route('manage.stock')}}"><i class="ti-more"></i>Manage Stock</a></li>
+          </ul>
+        </li>
+        
         <li class="treeview {{($prefix == '/SEO')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>
@@ -212,33 +240,20 @@
 
           </ul>
         </li>
-
-        <li class="treeview {{($prefix == '/return')? 'active':''}}">
-          <a href="#">
-            <i data-feather="sun"></i>
-            <span>Return Orders</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="{{($route == 'all.returnrequest')? 'active':''}}"><a href="{{route('all.returnrequest')}}"><i class="ti-more"></i>All Requests</a></li>
-            <li class="{{($route == 'success.returnrequest')? 'active':''}}"><a href="{{route('success.returnrequest')}}"><i class="ti-more"></i>Success Requests</a></li>
-          </ul>
-        </li>
+        
         <li class="treeview {{($prefix == '/contact')? 'active':''}}">
           <a href="#">
-            <i data-feather="sun"></i>
+            <i data-feather="message-circle"></i>
             <span>Contact Messages</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href=""><i class="ti-more"></i>New Message</a></li>
-            <li class=""><a href=""><i class="ti-more"></i>All Messages</a></li>
+            <li class="{{($route == 'all.contactmessage')? 'active':''}}"><a href="{{route('all.contactmessage')}}"><i class="ti-more"></i>All Messages</a></li>
           </ul>
         </li>
+        
         <li class="treeview {{($prefix == '/comment')? 'active':''}}">
           <a href="#">
             <i data-feather="sun"></i>

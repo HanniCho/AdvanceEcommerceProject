@@ -45,7 +45,7 @@
                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                             </li>
 
-                            <button class="btn btn-primary icon" type="button" title="Wishlist" 
+                            <button type="button" class="btn btn-primary icon" title="Wishlist" 
                             id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
                                 
 

@@ -1,3 +1,6 @@
+@php
+$setting = App\Models\Setting::first();
+@endphp
 <footer id="footer" class="footer color-bg">
   <div class="footer-bottom">
     <div class="container">
@@ -13,19 +16,19 @@
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                 <div class="media-body">
-                  <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                  <p>{{$setting->address}}</p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                 <div class="media-body">
-                  <p>+(888) 123-4567<br>
-                    +(888) 456-7890</p>
+                  <p>{{$setting->mobile}}<br>
+                    {{$setting->phone}}</p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                <div class="media-body"> <span><a href="#">flipmart@themesground.com</a></span> </div>
+                <div class="media-body"> <span><a href="#">{{$setting->email}}</a></span> </div>
               </li>
             </ul>
           </div>
@@ -107,11 +110,11 @@
       <div class="col-xs-12 col-sm-6 no-padding">
         <div class="clearfix payment-methods">
           <ul>
-            <li><img src="assets/images/payments/1.png" alt=""></li>
-            <li><img src="assets/images/payments/2.png" alt=""></li>
-            <li><img src="assets/images/payments/3.png" alt=""></li>
-            <li><img src="assets/images/payments/4.png" alt=""></li>
-            <li><img src="assets/images/payments/5.png" alt=""></li>
+            <li><img src="{{asset('frontend/assets/images/payments/1.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/images/payments/2.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/images/payments/3.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/images/payments/4.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/images/payments/5.png')}}" alt=""></li>
           </ul>
         </div>
         <!-- /.payment-methods --> 

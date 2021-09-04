@@ -123,9 +123,9 @@ Buy {{$product->product_name_en}}
 									</div>
 									<div class="col-sm-6">
 										<div class="favorite-button m-t-10">
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
-											    <i class="fa fa-heart"></i>
-											</a>
+											<button type="button" class="btn btn-primary icon" title="Wishlist" 
+											id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+											
 											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
 											   <i class="fa fa-signal"></i>
 											</a>
@@ -323,11 +323,8 @@ Buy {{$product->product_name_en}}
 																		
 											</li>
 										
-											<li class="lnk wishlist">
-												<a class="add-to-cart" href="detail.html" title="Wishlist">
-													<i class="icon fa fa-heart"></i>
-												</a>
-											</li>
+											<button type="button" class="btn btn-primary icon" title="Wishlist" 
+                            				id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
 
 											<li class="lnk">
 												<a class="add-to-cart" href="detail.html" title="Compare">
