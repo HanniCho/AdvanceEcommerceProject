@@ -150,23 +150,25 @@ class IndexController extends Controller
         
         return view('frontend.tag.product_tags_view',compact('products','categories'));
     }
-    public function SubCategoryWiseProduct($subcategory_id, $slug)
-    {
+    public function SubCategoryWiseProduct($slug, $subcategory_id)
+    {        
         $categories = Category::orderBy('category_name_en','ASC')->get();
-
-        $products = Product::where('status',1)
+        $sub_category = SubCategory::where('id',$subcategory_id)->first();
+       
+        $products = Product::with('subcategory')->where('status',1)
                     ->where('subcategory_id',$subcategory_id)
                     ->orderBy('id','DESC')->paginate(3);
-        return view('frontend.product.subcategory_view',compact('products','categories'));
+        return view('frontend.product.subcategory_view',compact('products','categories','sub_category'));
     }
-    public function SubSubCategoryWiseProduct($subsubcategory_id, $slug)
+    public function SubSubCategoryWiseProduct($slug, $subsubcategory_id)
     {
         $categories = Category::orderBy('category_name_en','ASC')->get();
+        $sub_sub_category = SubSubCategory::where('id',$subsubcategory_id)->first();
 
         $products = Product::where('status',1)
                     ->where('subsubcategory_id',$subsubcategory_id)
                     ->orderBy('id','DESC')->paginate(3);
-        return view('frontend.product.subsubcategory_view',compact('products','categories'));
+        return view('frontend.product.subsubcategory_view',compact('products','categories','sub_sub_category'));
     }
     public function ProductViewAjax($id)
     {
@@ -184,5 +186,19 @@ class IndexController extends Controller
             'color' => $product_color,
             'size' => $product_size,
         ));
+    }
+    public function Search(Request $request)
+    {
+        $item = $request->search;
+        //echo "$item";
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        $products = Product::where('product_name_en','LIKE',"%$item%")
+                ->where('product_name_en','LIKE',"%$item%")->paginate(6);
+
+        return view('frontend.product.product_search',compact('categories','products'));
+    }
+    public function ThankYou()
+    {
+        return view('frontend.thankyou');
     }
 }

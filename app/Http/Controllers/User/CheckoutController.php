@@ -49,6 +49,9 @@ class CheckoutController extends Controller
         elseif($request->payment_method == "card"){
             return "card";
         }
+        elseif($request->payment_method == "paypal"){
+            return view('frontend.payment.paypal',compact('data','cartTotal'));
+        }
         else {
             return view('frontend.payment.cash',compact('data','cartTotal'));
         }

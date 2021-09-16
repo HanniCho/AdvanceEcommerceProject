@@ -1,3 +1,6 @@
+@php
+$setting = App\Models\Setting::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="{{asset('backend/images/favicon.ico')}}"> -->
-    <link rel="icon" href="{{asset('backend/images/honey-logo.png')}}" style="width:50px; height:50px;">
+    <link rel="icon" href="{{asset($setting->site_logo)}}" style="width:50px; height:50px;">
 
     <title>Honey Shop Admin - Dashboard</title>
     

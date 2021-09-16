@@ -122,7 +122,7 @@
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <!-- ============================================================= LOGO ============================================================= -->
           <div class="logo"> 
-            <a href="{{url('/')}}"> <img src="{{asset('frontend/assets/images/honey-logo.png')}}" style = "width:100px; heigth:100px;" alt="logo"> </a> 
+            <a href="{{url('/')}}"> <img src="{{asset($setting->site_logo)}}" style = "width:100px; heigth:100px;" alt="logo"> </a> 
             
           </div>
           <!-- /.logo --> 
@@ -133,21 +133,25 @@
           <!-- /.contact-row --> 
           <!-- ============================================================= SEARCH AREA ============================================================= -->
           <div class="search-area">
-            <form>
+            <form method="post" action="{{route('product.search')}}">
+              @csrf
+              @php
+              $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
+              @endphp
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
                   <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" >
-                      <li class="menu-header">Computer</li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
+                      <!-- <li class="menu-header">Computer</li> -->
+                      @foreach ($categories as $category)
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">{{$category->category_name_en}}</a></li>
+                      @endforeach
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="#" ></a> </div>
+                <input type="search" name="search" class="search-field" placeholder="Search here..." />
+                <a><button type="submit" class="search-button" ></button></a> 
+              </div>
             </form>
           </div>
           <!-- /.search-area --> 
@@ -232,7 +236,7 @@
                           @endphp
                           @foreach($subcategories as $subcategory)
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en)}}">
+                            <a href="{{url('subcategory/'.$subcategory->subcategory_slug_en).'/'.$subcategory->id}}">
                               <h2 class="title">
                               @if(session()->get('language') == 'myanmar') {{$subcategory->subcategory_name_mm}} @else {{$subcategory->subcategory_name_en}} @endif  
                               </h2>  
@@ -243,7 +247,7 @@
                             $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
                             @endphp
                             @foreach($subsubcategories as $subsubcategory)
-                              <li><a href="{{url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en)}}">@if(session()->get('language') == 'myanmar') {{$subsubcategory->subsubcategory_name_mm}} @else {{$subsubcategory->subsubcategory_name_en}} @endif </a></li>
+                              <li><a href="{{url('subsubcategory/'.$subsubcategory->subsubcategory_slug_en).'/'.$subsubcategory->id}}">@if(session()->get('language') == 'myanmar') {{$subsubcategory->subsubcategory_name_mm}} @else {{$subsubcategory->subsubcategory_name_en}} @endif </a></li>
                             @endforeach
                             </ul>
                           </div>

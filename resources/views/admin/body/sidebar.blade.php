@@ -11,8 +11,8 @@
 				  <a href="{{url('admin/dashboard')}}">
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
-						  <img src="{{asset('backend/images/honey-logo.png')}}" style="width:60px; height:60px;" alt="Logo">
-						  <h3><i><b>H</b>oney <b>S</b>hop</i></h3>
+						  <img src="{{asset($setting->site_logo)}}" style="width:60px; height:60px;" alt="Logo">
+						  <h3><i><b>{{$setting->site_name}}</b></i></h3>
 					 </div>
 				  </a>
 			  </div>
@@ -220,7 +220,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{($route == 'seo.edit')? 'active':''}}"><a href="{{route('seo.edit')}}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li class="{{($route == 'seo.edit')? 'active':''}}"><a href="{{route('seo.edit')}}"><i class="ti-more"></i>SEO Settings</a></li>
           </ul>
         </li>
         
@@ -265,6 +265,19 @@
           <ul class="treeview-menu">
             <li class=""><a href=""><i class="ti-more"></i>New Comment</a></li>
             <li class=""><a href=""><i class="ti-more"></i>All Comments</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview {{($prefix == '/excel')? 'active':''}}">
+          <a href="#">
+            <i data-feather="sun"></i>
+            <span>Excel Import/Export</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route == 'all.importexportview')? 'active':''}}"><a href="{{route('all.importexportview')}}"><i class="ti-more"></i>Import/Export</a></li>
           </ul>
         </li>
       </ul>       

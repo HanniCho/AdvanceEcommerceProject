@@ -8,7 +8,8 @@ SubCategory Wise Product
     <div class="breadcrumb-inner">
       <ul class="list-inline list-unstyled">
         <li><a href="{{url('/')}}">Home</a></li>
-        <li class='active'>Handbags</li>
+        <li>{{$sub_category->category->category_name_en}}</li>
+        <li class='active'>{{$sub_category->subcategory_name_en}}</li>
       </ul>
     </div>
     <!-- /.breadcrumb-inner --> 

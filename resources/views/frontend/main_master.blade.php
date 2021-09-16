@@ -1,3 +1,6 @@
+@php
+$setting = App\Models\Setting::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<link rel="icon" href="{{asset('backend/images/honey-logo.png')}}" style="width:50px; height:50px;">
+<link rel="icon" href="{{asset($setting->site_logo)}}" style="width:50px; height:50px;">
 <title>@yield('title')</title>
 
 <!-- Bootstrap Core CSS -->

@@ -31,8 +31,14 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\PayPalController;
 use App\Http\Controllers\User\ContactController;
 
+use App\Http\Controllers\Socialite\GoogleController;
+use App\Http\Controllers\Socialite\FacebookController;
+use App\Http\Controllers\Socialite\GithubController;
+
+use App\Http\Controllers\Excel\TransactionController;
 
 use App\Models\User;
 /*
@@ -49,6 +55,16 @@ use App\Models\User;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+//Socialite Login (User)
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/callback/google', [GoogleController::class, 'handleCallback']);
+
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+Route::get('auth/callback/facebook', [FacebookController::class, 'handleCallback']);
+
+Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
+Route::get('auth/callback/github', [GithubController::class, 'handleCallback']);
 
 Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
@@ -176,6 +192,8 @@ Route::prefix('shipping')->group(function(){
 Route::prefix('newsletter')->group(function(){
 	Route::get('/all', [NewsLetterController::class, 'DisplayNewsLetter'])->name('all.newsletter');
     Route::get('/delete/{id}', [NewsLetterController::class, 'NewsLetterDelete'])->name('newsletter.delete');
+    Route::post('/delete/all', [NewsLetterController::class, 'NewsLetterDeleteAll'])->name('delete.all.newsletter');
+
     Route::post('/store', [NewsLetterSubscriptionController::class, 'NewsLetterStore'])->name('newsletter.store');
 });
 // Admin Orders
@@ -232,6 +250,13 @@ Route::prefix('return')->group(function(){
 // Admin Contact Message Routes
 Route::get('/contact/all', [ContactController::class, 'DisplayAllMessages'])->name('all.contactmessage');
 
+Route::prefix('excel')->group(function(){
+	Route::get('/view', [TransactionController::class, 'ImportExportView'])->name('all.importexportview');
+    Route::get('/export/{type}', [TransactionController::class, 'ExportExcel'])->name('exportexcel');
+    Route::post('/import', [TransactionController::class, 'ImportExcel'])->name('importexcel');
+});
+
+
 //Frontend All Routes//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
@@ -246,6 +271,8 @@ Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
 Route::post('/update/change/password', [IndexController::class, 'UserUpdateChangedPassword'])->name('update.change.password');
+
+Route::get('/thankyou', [IndexController::class, 'ThankYou']);
 
 //Multi Language Routes
 Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
@@ -262,10 +289,10 @@ Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDeta
 Route::get('/product/tags/{tag}', [IndexController::class, 'TagWiseProduct']);
 
 //Subcategory Wise Routes
-Route::get('/subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
+Route::get('/subcategory/{slug}/{subcategory_id}', [IndexController::class, 'SubCategoryWiseProduct']);
 
 //SubSubcategory Wise Routes
-Route::get('/subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
+Route::get('/subsubcategory/{slug}/{subsubcategory_id}', [IndexController::class, 'SubSubCategoryWiseProduct']);
 
 //Product view modal with Ajax Routes
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
@@ -303,6 +330,9 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     //Cash on Delivery Payment Route
     Route::post('/payment/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
 
+    //Cash on Delivery Payment Route
+    Route::post('/payment/paypal/order', [PayPalController::class, 'PayPalOrder']);
+
     //User Order Routes
     Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
@@ -329,3 +359,7 @@ Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->na
 //Contact Route
 Route::get('/contact', [ContactController::class, 'ContactView'])->name('contact');
 Route::post('/contact/send/message', [ContactController::class, 'ContactStore'])->name('contact.store');
+
+
+//Add to Cart Routes
+Route::post('/search/product', [IndexController::class, 'Search'])->name('product.search');

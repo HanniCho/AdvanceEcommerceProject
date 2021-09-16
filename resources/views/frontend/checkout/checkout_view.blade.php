@@ -22,7 +22,7 @@ Checkout Page
 			<div class="row">
                 <form class="register-form" method="POST" action="{{route('checkout.info.store')}}">
                     @csrf
-                    <div class="col-md-8">                
+                    <div class="col-md-7">                
                         <div class="panel-group checkout-steps" id="accordion">
                             <!-- checkout-step-01  -->
                             <div class="panel panel-default checkout-step-01">
@@ -103,7 +103,7 @@ Checkout Page
                         </div><!-- /.checkout-steps -->
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                     
                         <div class="checkout-progress-sidebar ">
                             <div class="panel-group">
@@ -117,8 +117,21 @@ Checkout Page
                                             <li>
                                                 <img src="{{ asset($item->options->image) }}" style="height: 50px; width: 50px;">
                                                 <strong>Qty: </strong> ({{$item->qty}})
-                                                <strong>Color: </strong> {{$item->options->color}}
-                                                <strong>Size: </strong> {{$item->options->size}}                                        
+                                               
+                                                <strong>Color: </strong> 
+                                                @if($item->options->color == NULL)
+                                                ...
+                                                @else
+                                                    {{$item->options->color}}
+                                                @endif
+                                                
+                                                <strong>Size: </strong> 
+                                                @if($item->options->size == NULL)
+                                                ...
+                                                @else
+                                                {{$item->options->size}}                                        
+                                                @endif
+
                                             </li>
                                             <hr>
                                             @endforeach
@@ -127,15 +140,12 @@ Checkout Page
                                                 @if(Session::has('coupon'))
                                                     <strong>SubTotal: </strong> ${{ $cartTotal }} <hr>
                                                     <strong>Coupon Name : </strong> {{ session()->get('coupon')['coupon_name'] }}
-                                                    ( {{ session()->get('coupon')['coupon_discount'] }} % )
-                                                    <hr>
-                                                    <strong>Coupon Discount : </strong> ${{ session()->get('coupon')['discount_amount'] }} 
-                                                    <hr>
-                                                    <strong>Grand Total : </strong> ${{ session()->get('coupon')['total_amount'] }} 
-                                                    <hr>
+                                                    ( {{ session()->get('coupon')['coupon_discount'] }} % )     <hr>
+                                                    <strong>Coupon Discount : </strong> ${{ session()->get('coupon')['discount_amount'] }}<hr>
+                                                    <strong class="text-primary">Grand Total : ${{ session()->get('coupon')['total_amount'] }}</strong> <hr>
                                                 @else
                                                     <strong>SubTotal: </strong> ${{ $cartTotal }} <hr>
-                                                    <strong>Grand Total : </strong> ${{ $cartTotal }}</span> <hr>
+                                                    <strong class="text-primary">Grand Total :  ${{ $cartTotal }} </strong><hr>
                                                 @endif 
                                             </li>
                                         </ul>		
@@ -151,27 +161,30 @@ Checkout Page
                                         <h4 class="unicase-checkout-title">Select Payment Method</h4>
                                     </div>
                                     <div class="row">   
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="stripe">Stripe</label>
                                             <input type="radio" name="payment_method" value="stripe">
                                             <img src="{{asset('frontend\assets\images\payments\4.png')}}" alt="">
-                                        </div><!-- col-md-4 -->
-                                        <div class="col-md-4">
+                                        </div><!-- col-md-3 -->
+                                        <div class="col-md-3">
                                             <label for="card">Card</label>
                                             <input type="radio" name="payment_method" value="card">
                                             <img src="{{asset('frontend\assets\images\payments\3.png')}}" alt="">
-
-                                        </div><!-- col-md-4 -->
-                                        <div class="col-md-4">
+                                        </div><!-- col-md-3 -->
+                                        <div class="col-md-3">
+                                            <label for="card">PayPal</label>
+                                            <input type="radio" name="payment_method" value="paypal">
+                                            <img src="{{asset('frontend\assets\images\payments\1.png')}}" alt="">
+                                        </div><!-- col-md-3 -->
+                                        <div class="col-md-3">
                                             <label for="cash">Cash</label>
                                             <input type="radio" name="payment_method" value="cash">
                                             <img src="{{asset('frontend\assets\images\payments\6.png')}}" alt="">
-
-                                        </div><!-- col-md-4 -->
+                                        </div><!-- col-md-3 -->
                                         <hr>
                                     </div> <!-- row -->
                                     <hr>
-                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Step</button>
+                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Proceed To Payment</button>
 
                                 </div>
                             </div>

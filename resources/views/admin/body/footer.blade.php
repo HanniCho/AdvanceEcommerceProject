@@ -5,9 +5,9 @@
 			<a class="nav-link" href="javascript:void(0)">FAQ</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="#">hannicho.is.utycc@gmail.com</a>
+			<a class="nav-link" href="#">{{$setting->email}}</a>
 		  </li>
 		</ul>
     </div>
-	&copy; 2021 <a href="#">Hanni Shop</a>. All Rights Reserved.
+	&copy; {{Carbon\Carbon::now()->format('Y')}} <a href="#">{{$setting->site_name}}</a>. All Rights Reserved.
 </footer>

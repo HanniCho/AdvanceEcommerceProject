@@ -1,14 +1,14 @@
 @extends('frontend.main_master')
 @section('main_content')
 @section('title')
-My Cart Page
+Shopping Cart Page
 @endsection
 <div class="breadcrumb">
 	<div class="container">
 		<div class="breadcrumb-inner">
 			<ul class="list-inline list-unstyled">
 				<li><a href="{{url('/')}}">Home</a></li>
-				<li class='active'>My Cart</li>
+				<li class='active'>Shopping Cart</li>
 			</ul>
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->

@@ -5798,6 +5798,14 @@ age-container #owl-main .owl-next {
 .body-content .sign-in-page .sign-in .social-sign-in .facebook-sign-in:focus {
   background-color: #153470;
 }
+.body-content .sign-in-page .sign-in .social-sign-in .github-sign-in {
+  background-color: #535355;
+  margin-right: 10px;
+}
+.body-content .sign-in-page .sign-in .social-sign-in .github-sign-in:hover,
+.body-content .sign-in-page .sign-in .social-sign-in .github-sign-in:focus {
+  background-color: #333030;
+}
 .body-content .sign-in-page .sign-in .social-sign-in .twitter-sign-in {
   background-color: #22aadf;
 }

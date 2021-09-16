@@ -18,10 +18,7 @@
 				<div class="col-md-6 col-sm-6 sign-in">
 					<h4 class="">Sign in</h4>
 					<p class="">Hello, Welcome to your account.</p>
-					<div class="social-sign-in outer-top-xs">
-						<a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-						<a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-					</div>
+					
 					<form method="POST" action="{{ isset($guard) ? url($guard.'/login') :  route('login') }}">
 						@csrf
 						<div class="form-group">
@@ -44,79 +41,26 @@
 								</a>
 						</div>
 						<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-					</form>					
+					</form>		
+					
+					<div class="social-sign-in outer-top-xs">
+						
+						<a href="{{ url('auth/google') }}"><img src="{{asset('upload\socialite_images\btn_google_signin_dark_normal_web.png')}}" alt=""></a>
+						<a href="{{ url('auth/github') }}" class="github-sign-in"><i class="fa fa-github"></i> Sign In with GitHub</a>
+					</div>
+					<div class="social-sign-in outer-top-xs">
+						
+						<a href="{{ url('auth/facebook') }}" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+						<a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+					</div>
 				</div>
+
+				
 				<!-- Sign-in -->
 			</div><!-- /.row -->
 		</div><!-- /.sigin-in-->
 		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-		<div id="brands-carousel" class="logo-slider wow fadeInUp">
-
-				<div class="logo-slider-inner">	
-					<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-						<div class="item m-t-15">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item m-t-10">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-
-						<div class="item">
-							<a href="#" class="image">
-								<img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-							</a>	
-						</div><!--/.item-->
-					</div><!-- /.owl-carousel #logo-slider -->
-				</div><!-- /.logo-slider-inner -->
-				@include('frontend.body.brands');
-		</div><!-- /.logo-slider -->
+		@include('frontend.body.brands')
 		<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 	</div>
 </div>

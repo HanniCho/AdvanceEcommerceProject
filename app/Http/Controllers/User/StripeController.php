@@ -32,7 +32,7 @@ class StripeController extends Controller
 
         $charge = \Stripe\Charge::create([
             'amount' => $total_amount * 100,
-            'currency' => 'usd',
+            'currency' => 'USD',
             'description' => 'Honey Online Shop',
             'source' => $token,
             'metadata' => ['order_id' => uniqid()],
@@ -52,7 +52,7 @@ class StripeController extends Controller
             'payment_type' =>$charge->payment_method,
             'payment_method' => 'Stripe',
             'transaction_id' => $charge->balance_transaction,
-            'currency' => $charge->currency,
+            'currency' => strtoupper($charge->currency),
             'amount' => $total_amount,
             'order_number' => $charge->metadata->order_id,
             'invoice_no' => 'INV'.mt_rand(10000000,99999999),
@@ -98,6 +98,7 @@ class StripeController extends Controller
             'message' => 'Your Order Place Successfully!',
             'alert-type' => 'success'
         );
-        return redirect()->to('/')->with($notification);
+        return redirect()->to('/thankyou')->with($notification);
+       
     }
 }
