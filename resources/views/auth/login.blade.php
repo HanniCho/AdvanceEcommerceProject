@@ -14,10 +14,12 @@
 	<div class="container">
 		<div class="sign-in-page">
 			<div class="row">
-				<!-- Sign-in -->			
+				<!-- Sign-in -->		
+				<div class="col-md-3 col-sm-3 sign-in">
+				</div>	
 				<div class="col-md-6 col-sm-6 sign-in">
 					<h4 class="">Sign in</h4>
-					<p class="">Hello, Welcome to your account.</p>
+					<p class=""></p>
 					
 					<form method="POST" action="{{ isset($guard) ? url($guard.'/login') :  route('login') }}">
 						@csrf
@@ -43,19 +45,17 @@
 						<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
 					</form>		
 					
-					<div class="social-sign-in outer-top-xs">
-						
-						<a href="{{ url('auth/google') }}"><img src="{{asset('upload\socialite_images\btn_google_signin_dark_normal_web.png')}}" alt=""></a>
-						<a href="{{ url('auth/github') }}" class="github-sign-in"><i class="fa fa-github"></i> Sign In with GitHub</a>
-					</div>
-					<div class="social-sign-in outer-top-xs">
-						
+					<div class="social-sign-in outer-top-xs">						
+						<a href="{{ url('auth/google') }}"class="google-sign-in"><i class="fa fa-google"></i> Sign In with Google</a>
 						<a href="{{ url('auth/facebook') }}" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+					</div>
+					<div class="social-sign-in outer-top-xs">						
+						<a href="{{ url('auth/github') }}" class="github-sign-in"><i class="fa fa-github"></i> Sign In with GitHub</a>
 						<a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
 					</div>
 				</div>
-
-				
+				<div class="col-md-3 col-sm-3 sign-in">
+				</div>				
 				<!-- Sign-in -->
 			</div><!-- /.row -->
 		</div><!-- /.sigin-in-->

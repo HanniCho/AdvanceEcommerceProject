@@ -193,7 +193,7 @@ class IndexController extends Controller
         //echo "$item";
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $products = Product::where('product_name_en','LIKE',"%$item%")
-                ->where('product_name_en','LIKE',"%$item%")->paginate(6);
+                ->where('product_name_en','LIKE',"%$item%")->paginate(3);
 
         return view('frontend.product.product_search',compact('categories','products'));
     }

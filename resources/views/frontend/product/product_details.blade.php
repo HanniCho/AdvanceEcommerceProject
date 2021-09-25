@@ -98,7 +98,11 @@ Buy {{$product->product_name_en}}
 									</div>
 									<div class="col-sm-9">
 										<div class="stock-box">
-											<span class="value">In Stock</span>
+											@if($product->product_qty > 0)
+												<span class=" value badge badge-pill badge-success" style="background:green; color:white;">In Stock</span>
+											@else
+												<span class="value badge badge-pill badge-danger" style="background:red; color:white;">Out of Stock</span>
+											@endif
 										</div>	
 									</div>
 								</div><!-- /.row -->	
@@ -144,14 +148,14 @@ Buy {{$product->product_name_en}}
 												<label class="info-title control-label">@if(session()->get('language') == 'myanmar') အရောင် @else Color @endif <span></span></label>
 												@if(session()->get('language') == 'myanmar') 
 												<select id="color" class="form-control unicase-form-control selectpicker" style="display: none;">
-													<option selected="" disabled="">အရောင်ရွေးပါ</option>
+													
 													@foreach($product_color_mm as $color)
 														<option value="{{ $color }}">{{ $color}}</option>	
 													@endforeach
 												</select>
 												@else 
 												<select id="color" class="form-control unicase-form-control selectpicker" style="display: none;">
-													<option selected="" disabled="">--Select Color--</option>
+													
 													@foreach($product_color_en as $color)
 														<option value="{{ $color }}">{{ ucwords($color)}}</option>	
 													@endforeach
@@ -167,14 +171,14 @@ Buy {{$product->product_name_en}}
 												<label class="info-title control-label">@if(session()->get('language') == 'myanmar') ဆိုဒ် @else Size @endif <span></span></label>
 												@if(session()->get('language') == 'myanmar') 
 												<select id="size" class="form-control unicase-form-control selectpicker" style="display: none;">
-													<option selected="" disabled="">ဆိုဒ်ရွေးပါ</option>
+													
 													@foreach($product_size_mm as $size)
 														<option value="{{ $size }}">{{ $size }}</option>	
 													@endforeach
 												</select>
 												@else 
 												<select id="size" class="form-control unicase-form-control selectpicker" style="display: none;">
-													<option selected="" disabled="">--Select Size--</option>
+													
 													@foreach($product_size_en as $size)
 														<option value="{{ $size }}">{{ ucwords($size) }}</option>	
 													@endforeach

@@ -41,7 +41,7 @@ class GithubController extends Controller
                     'email' => $user->email,
                     'social_id'=> $user->id,
                     'social_type'=> 'github',
-                    'password' => encrypt('github123456')
+                    'password' => encrypt('password')
                 ]);
      
                 Auth::login($newUser);

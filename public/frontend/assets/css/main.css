@@ -1579,7 +1579,7 @@ header{background:#157ed2}
   line-height: normal;
   text-transform: none ;
   display: block;
-  padding: 8px 16px;
+  padding: 8px 0px;
 }
 .yamm .dropdown-menu li a:hover,
 .yamm .dropdown-menu li a:focus {
@@ -5789,6 +5789,16 @@ age-container #owl-main .owl-next {
 }
 .body-content .sign-in-page .sign-in .social-sign-in a i {
   padding-right: 6px;
+}
+.body-content .sign-in-page .sign-in .social-sign-in .google-sign-in {
+  background-color: #d8d9da;
+  margin-right: 10px;
+  color: #000;
+}
+.body-content .sign-in-page .sign-in .social-sign-in .google-sign-in:hover,
+.body-content .sign-in-page .sign-in .social-sign-in .google-sign-in:focus {
+  background-color: #b8b8b9;
+  color: #000;
 }
 .body-content .sign-in-page .sign-in .social-sign-in .facebook-sign-in {
   background-color: #3d5c98;

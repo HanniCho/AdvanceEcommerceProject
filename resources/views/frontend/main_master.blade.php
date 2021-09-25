@@ -154,7 +154,7 @@ $setting = App\Models\Setting::first();
               <ul class="list-group">
                 <li class="list-group-item">Product Price: 
                   <strong  class="text-danger">$<span id="pprice"></span></strong>
-                  $<del id="oldprice"></del>
+                  <del id="oldprice"></del>
                 </li>
                 <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
                 <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
@@ -231,7 +231,7 @@ $setting = App\Models\Setting::first();
             
           } else {
             $('#pprice').text(data.product.discount_price);
-            $('#oldprice').text(data.product.selling_price);
+            $('#oldprice').text('$'+ data.product.selling_price);
           }
           //End Product Price
 
